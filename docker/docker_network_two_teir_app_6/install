@@ -1,3 +1,8 @@
+# clone repo which have app and db application setup and ready to use
+
+git clone https://github.com/LondheShubham153/two-tier-flask-app.git
+
+
 cd two-tier-flask-app
 
 docker ps

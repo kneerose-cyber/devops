@@ -1,3 +1,6 @@
+# clone the repo to get for pre install app to run
+git clone https://github.com/LondheShubham153/node-todo-cicd.git
+
 
 cd node-app
 

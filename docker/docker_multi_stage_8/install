@@ -1,7 +1,15 @@
+#clone repo which have docker Multi file setup ready to go 
+git clone https://github.com/LondheShubham153/python-multistage-docker.git
+
+
 #multi  stage docker build - reduce docket image size , size of app. 
 #it will have STAGE 1 and STAGE 2 in same file, unlike we did before only STAGE 1
 
+
 cd python-multistage-docker
+
+#check docker file to understand how multiple stage works and use cases
+cat Dockerfile 
 
 docker build -t multi-stage-python .
 

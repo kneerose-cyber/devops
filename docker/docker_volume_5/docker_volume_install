@@ -1,3 +1,6 @@
+# setup volume clone a repo, this repo have app config setup ready to go
+git clone https://github.com/LondheShubham153/django-todo-cicd.git
+
 #check volume, docker volume is needed so you don't lose the data when you delete
 docker volume ls
 
