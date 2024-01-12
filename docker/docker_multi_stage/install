@@ -1,0 +1,10 @@
+#multi  stage docker build - reduce docket image size , size of app. 
+#it will have STAGE 1 and STAGE 2 in same file, unlike we did before only STAGE 1
+
+cd python-multistage-docker
+
+docker build -t multi-stage-python .
+
+docker run -d -p 5000:5000 multi-stage-python:latest
+docker ps
+docker logs containerid

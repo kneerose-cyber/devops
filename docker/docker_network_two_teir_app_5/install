@@ -1,0 +1,50 @@
+cd two-tier-flask-app
+
+docker ps
+
+docker network ls 
+
+### -d stand for drvier, bridge network(it's default network), we're creating a network
+docker network create -d bridge two-tier-app-nw
+
+#verify
+docker network ls 
+
+# now run docker and tie it to the newly created network
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=test@123 -e MYSQL_DATABASE=testdb  -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin --name mysql --network two-tier-app-nw mysql:latest
+
+docker network ls 
+
+docker inspect two-tier-app-nw
+
+docker ps
+
+# interactive terminal
+docker exec -it containerid bash (mysql)
+  mysql -u root -p test@123
+
+since DB is ready
+exit out
+
+# image for app 
+docker build -t flask-app .
+
+docker build -t flask-app:latest .
+
+# inbound 5000 port add and adding to the same network created earlier
+docker run -d -p 5000:5000 -e MYSQL_HOST=mysql -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin -e MYSQL_DB=testdb --name flask-app --network two-tier-app-nw  flask-app:latest 
+
+# now app & db in same network 
+docker inspect two-tier-app-nw
+
+docker ps
+
+docker exec -it mysqlcontainerid bash
+mysql -u root -p test@123
+use testdb;
+CREATE TABLE messages (     id INT AUTO_INCREMENT PRIMARY KEY,     message TEXT );
+
+
+#verfiy login now app and DB are in same network # any input will store in DB.
+http://ip:5000 
+

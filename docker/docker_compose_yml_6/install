@@ -1,0 +1,17 @@
+#docker compose and multi stage
+sudo apt  install docker-compose 
+
+cd two-tier-flask-app
+
+# THis is proper way to do it, all config are set in the yaml, depends_on: mysql(dependencies but don't wait for depended service to be ready), you might want a healthcheck: 
+vim docker-compose.yml
+
+# -d background
+docker-compose up -d
+
+docker ps
+
+#to remvoe 
+doccker-compose down 
+
+https://github.com/LondheShubham153/two-tier-flask-app/blob/master/docker-compose.yml

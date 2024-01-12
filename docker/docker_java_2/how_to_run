@@ -1,0 +1,11 @@
+git clone 
+
+docker build -t java-app:latest .
+
+docker images
+
+# it should print from java file
+docker run java-app:latest
+
+# if you want to update the file Hello.java and run again
+docker build -t java-app:latest .

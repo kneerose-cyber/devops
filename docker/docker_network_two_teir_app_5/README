@@ -1,0 +1,8 @@
+Creating a network and binding app and db in same network.
+
+SOme of the docker network
+
+1) docker host network and bridge network(default), 
+2) none(no network access ) - docker run -d --name nginx-non --network none nginx 
+3) custom bridge - custom in same subnet and don't connect to others. 
+4) Docker overlay network is a networking driver that enables communication between Docker containers running on different Docker hosts.

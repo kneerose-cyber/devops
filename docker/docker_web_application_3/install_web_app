@@ -1,0 +1,17 @@
+
+cd node-app
+
+ # build Docker images from a specified Dockerfile. 
+ #docker build -t <image-name:tag> . , -f filename !!! default -> Dockerfile
+
+docker build -t node-app .
+
+ # -p port local port: container port (mapped), create container using the create image above
+docker run -d -p 8000:8000 node-app:latest
+
+# allow 8000 to view application inbound rule
+#check connection 
+nc -vz publicIp 8000
+
+#loading application after docker container get created
+url -> http://publicip:8000

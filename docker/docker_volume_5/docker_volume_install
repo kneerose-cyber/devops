@@ -1,0 +1,39 @@
+#check volume, docker volume is needed so you don't lose the data when you delete
+docker volume ls
+
+mkdir -p volume/django-app
+
+# opt = option, bind volume to local disk
+docker volume create --name django-todo-volume --opt type=none --opt device=/home/$username/volume/django-app --opt o=bind
+
+#verify
+docker volume ls
+
+docker ps
+
+docker kill containerID
+
+docker rm containerID
+
+cd django-todo-cicd
+
+docker build -t django-todo-app .
+
+# target whichever working dir /data, docker run
+docker run -d -p 8000:8000 --mount source=django-todo-volume,target=/data django-todo-app:latest
+
+cd ..
+cd volumes/django-app/ 
+ls 
+
+docker ps
+# now docker kill, rm won't delete the data. 
+docker stop containerID
+docker kill containerID
+docker rm containerID
+
+#bring docker back data will be still there
+docker start imageid
+
+#login to verify
+http://ip:8000

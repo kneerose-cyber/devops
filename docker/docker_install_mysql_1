@@ -1,0 +1,38 @@
+#install docker in ubuntu !! check which OS and install might differ e.g. centos - yum install
+sudo apt install docker
+sudo apt install docker.io
+
+#check status
+systemctl status docker
+
+#docker process
+docker ps
+
+#permission & reboot
+whoami 
+sudo usermod -aG docker (whoamiuser)
+sudo reboot
+docker ps
+
+#docker hub pull mysql pre image which have install config etc
+docker pull mysql 
+
+#Docker images on Docker host, images, such as their repository, tag, image ID, creation time, and size.
+docker images
+
+# docker run based on the image downloaded/create
+docker run mysql:latest
+
+# -d run in background
+docker run -d -e MYSQL_ROOT_PASSWORD=test@123 mysql:latest
+
+#login to mysql
+docker ps
+docker exec -it <containerid> bash
+  mysql -u root -p test@123
+
+#if you want to kill the container/ps, rmi to remove image
+docker kill containerID
+docker ps -a
+docker rm containerID
+docker rmi imageid
