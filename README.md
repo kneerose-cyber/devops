@@ -1,2 +1,1 @@
-# devops
-# hello 
+# ddevops basic
