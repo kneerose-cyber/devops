@@ -1,1 +1,1 @@
-# devops basic  and pinapepple
+# devops basic  and copy
