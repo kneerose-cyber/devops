@@ -1,1 +1,1 @@
-# devops basic 
+# devops basic  and apple
