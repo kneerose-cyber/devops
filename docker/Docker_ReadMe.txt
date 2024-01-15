@@ -35,5 +35,6 @@ file-> image -> container
 
 
 Cons
+-------
 Don't have autohealing or scaling
 image build for one specific OS and can't be use on another. 
