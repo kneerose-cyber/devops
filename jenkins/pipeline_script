@@ -1,0 +1,41 @@
+# pipeline script
+# Label is important based on that mapping it will deploy to dev-server / agent
+
+pipeline {
+    agent { label "dev-server"}
+    
+    stages {
+        
+        stage("code"){
+            steps{
+                echo "hello world"  
+                sh 'echo "Running on dev-server..." | tee /tmp/output.txt'
+            }
+        }
+        stage("build and test"){
+            steps{
+              echo 'code build '  
+              sh 'echo "Running on buil and test..." >> /tmp/output.txt'
+            }
+        }
+        stage("scan image"){
+            steps{
+                echo 'image scanning '
+            }
+        }
+        stage("push"){
+            steps{
+                echo 'image push ' 
+                sh 'echo "Runninss .." >> /tmp/output.txt'
+                }
+            }
+        
+        stage("deploy"){
+            steps{
+                echo 'deployment'
+                 sh 'echo "Running push .." >> tee /tmp/output.txt'
+            }
+        }
+    }
+    }
+

@@ -1,0 +1,19 @@
+Developer have a website and if he needs to test a code and check the webpage, the best bet is to setup a webhook and any commit he makes in lower environment, it will  
+
+why webhook - When an event occurs in one system (e.g., a new code commit, a new issue created, or a payment received), the webhook sends an HTTP POST request to a specified URL, allowing the receiving system to take immediate action.
+Example : When a developer commits a code in github to test any changes or issues on a website, webhook can trigger that code and deploy in a server and developer can see the change right away, Mostly use cases are in lower environment like QA, UAT etc
+
+webhook
+    Source Code Management
+     git repo  (mater branch)
+    build triggers
+     git hook trigger polling
+
+    github (settings)
+     webhook (post request to below url)
+     payload url -http://jenkinsips:8080/github-webhook/
+     after selecting trigger event with above web hook
+     make change in the github repo, it should trigger build in jenkins
+
+
+Github(code)  -> docker (build & test)  -> hub (push to docker hub/ push image ) -> ec2 instance (deploy on server )
