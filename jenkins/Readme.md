@@ -34,3 +34,6 @@ jenkins --version
 systemctl status jenkins
   by default jenkins run on 8080 and it get enable by default. allow 8080 on FW 
 
+
+  https://openterprise.it/2020/10/jenkins-pipeline-for-building-testing-and-running-docker-containers/
+
