@@ -11,8 +11,8 @@ systemctl status docker
 docker ps
 
 #permission & reboot
-whoami 
-sudo usermod -aG docker (whoamiuser)
+
+sudo usermod -aG docker ($whoami)
 sudo reboot
 docker ps
 
