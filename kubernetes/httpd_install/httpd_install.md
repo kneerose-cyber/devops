@@ -1,14 +1,14 @@
 created namespace (better practice - assigning in a group )
 labels (selector or selecting criteria) - is identification give to the pod to match desired state
-
-** MASTER NODE **
+ 
+ **MASTER NODE**
 ```bash
    mkdir projects
    cd projects
    mkdir httpd
 ```
 
-**#Need 2 files **
+ **Need 2 files**
  1) httpd-deployment.yaml
  2) httpd-service.yaml
 
