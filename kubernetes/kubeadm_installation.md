@@ -132,12 +132,4 @@ kubectl label node <node-name> node-role.kubernetes.io/worker=worker
 
 ---
 
-## Optional: Test a demo Pod 
 
-If you want to test a demo pod, you can use the following command:
-
-```bash
-kubectl run hello-world-pod --image=busybox --restart=Never --command -- sh -c "echo 'Hello, World' && sleep 3600"
-```
-
-<kbd>![image](https://github.com/paragpallavsingh/kubernetes-kickstarter/assets/40052830/bace1884-bbba-4e2f-8fb2-83bbba819d08)</kbd>

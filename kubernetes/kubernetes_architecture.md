@@ -12,6 +12,7 @@ This document explains the key components that make up the architecture of a Kub
 
 ![Kubernetes Architecture Diagram](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
 
+![image](https://github.com/kneerose-cyber/devops/assets/76444558/0e727a4e-53be-4f8f-aaaf-d45be5686f9f)
 
 ## Control Plane (Master Node Components)
 
@@ -76,8 +77,6 @@ A way to divide cluster resources among multiple users or teams. Think of it as 
 Think of this as the "front door" for external access to your applications, controlling how HTTP and HTTPS traffic should be routed to your services.
 
 ---
-
-And there you have it! That's a simplified breakdown of Kubernetes architecture components.
 
 
 <img width="1147" alt="Screenshot 2023-08-21 at 4 16 35 PM" src="https://github.com/bwarikoo/kubestarter/assets/32089999/086c90df-b741-4cac-8f5e-b7904d03d989">
