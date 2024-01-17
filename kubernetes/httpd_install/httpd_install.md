@@ -1,8 +1,8 @@
-created namesapce (better practice - assigning in a group )
-labels (selector or selecting criteria) - is identificaiton give to pod to match desire state
+created namespace (better practice - assigning in a group )
+labels (selector or selecting criteria) - is identification give to the pod to match desired state
 
-```bash
 ** MASTER NODE **
+```bash
    mkdir projects
    cd projects
    mkdir httpd
