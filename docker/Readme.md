@@ -6,7 +6,7 @@ docker
 **Hardwar**e -> ram disk, network -> OS -> docker engine(docekr d, docker cli)  -> container have kernels (hardware access)
 docker don't have kernel, it uses host kernel.
 
-**Docker d(**deamon process) &  docker cli (cmd) 
+**Docker d(deamon process) &  docker cli (cmd)**
 
 **Docker engine** - Containter d (open source) is running on docker engine .  Docker uses containerd internally as the lower-level container runtime.
 
