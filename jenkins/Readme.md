@@ -12,7 +12,8 @@ MAster and AGent
 ssh-keygen deploy on agent and on jenkins GUI add private keys to triggers build on agents.  
 -------------------------------------------------------------------------------------------------------
 
-Update the system & install JENKINS
+**Update the system & install JENKINS**
+```bash
 sudo apt-get update
 sudo apt install fontconfig openjdk-17-jre
 
@@ -25,7 +26,7 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 
 sudo apt-get install jenkins
-
+```
 
 Install jenkins on ubuntu google
 https://www.jenkins.io/doc/book/installing/linux/
