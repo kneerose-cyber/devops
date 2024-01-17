@@ -47,7 +47,7 @@ After deleting the scheduler will spin up pods mentioned on yaml file, no interr
 
 ## TO completely kill/shutdown httpd update 
 ```bash
- kubectl scale deployment httpd-deployment --replicas=0  OR ( edit file yaml file and apply to replicas 0)
+ kubectl scale deployment httpd-deployment --replicas=0  #OR ( edit file yaml file and apply to replicas 0)
 ```
 
 ## check the service will be dead as well as the pods
