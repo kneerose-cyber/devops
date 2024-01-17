@@ -9,8 +9,8 @@ labels (selector or selecting criteria) - is identification give to the pod to m
 ```
 
 **#Need 2 files **
-** httpd-deployment.yaml**
- **httpd-service.yaml**
+ 1) httpd-deployment.yaml
+ 2) httpd-service.yaml
 
 **#created namesapce (better practice - assigning in a group )**
 ```bash
