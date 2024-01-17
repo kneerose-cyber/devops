@@ -1,4 +1,6 @@
 #install docker in ubuntu !! check which OS and install might differ e.g. centos - yum install
+
+sudo apt update
 sudo apt install docker
 sudo apt install docker.io
 
@@ -9,8 +11,8 @@ systemctl status docker
 docker ps
 
 #permission & reboot
-whoami 
-sudo usermod -aG docker (whoamiuser)
+
+sudo usermod -aG docker ($whoami)
 sudo reboot
 docker ps
 

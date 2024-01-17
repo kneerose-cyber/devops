@@ -36,5 +36,10 @@ file-> image -> container
 
 Cons
 -------
-Don't have autohealing or scaling
-image build for one specific OS and can't be use on another. 
+Don't have autohealing or scaling  & image build for one specific OS and can't be used on another. 
+
+
+<kbd>![image](https://github.com/kneerose-cyber/devops/blob/main/docker/architecture.png)</kbd>
+
+<kbd>![image](https://github.com/kneerose-cyber/devops/blob/main/docker/taxonomy-of-docker-terms-and-concepts.png)</kbd>
+
