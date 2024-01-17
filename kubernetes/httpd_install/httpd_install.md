@@ -3,9 +3,9 @@ labels (selector or selecting criteria) - is identificaiton give to pod to match
 
 ```bash
 ** MASTER NODE **
-mkdir projects
-cd projects
-mkdir httpd
+   mkdir projects
+   cd projects
+   mkdir httpd
 ```
 
 **#Need 2 files **
@@ -14,7 +14,7 @@ mkdir httpd
 
 **#created namesapce (better practice - assigning in a group )**
 ```bash
-kubectl create namespace httpd-group
+   kubectl create namespace httpd-group
    kubectl apply -f httpd-service.yaml 
    kubectl apply -f httpd-deployment.yaml
 
@@ -33,23 +33,21 @@ nc -vz worker-external-ip 3193
 http://worker-external-ip:3193
 ```
 **Test scenario**
-```bash
  delete one pod
+```bash
  kubectl delete pod <pod-name>
-
+```
 delete all pods
+```bash
   kubectl delete pods --all 
 ```
 
 ## AUTO HEALING
-After deleting the scheduler will spun up pods mentioned on yaml file, no interruption on the service you can keep checking the browser
+After deleting the scheduler will spin up pods mentioned on yaml file, no interruption in the service you can keep checking the browser
 
-## TO completely kill/shutdown httpd
+## TO completely kill/shutdown httpd update 
 ```bash
-update 
- edit file yaml file and apply to replicas 0
-   OR
- kubectl scale deployment httpd-deployment --replicas=0 
+ kubectl scale deployment httpd-deployment --replicas=0  OR ( edit file yaml file and apply to replicas 0)
 ```
 
 ## check the service will be dead as well as the pods
