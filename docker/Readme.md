@@ -14,7 +14,7 @@ docker don't have kernel, it uses host kernel.
 Linux based docker images cannot use windows kernel . 
 Most containers are linux based and built for linux. 
 
-**Docker images vs containers. **
+**Docker images vs containers.**
 
 Docker image  an executable applicaton artifacts, includes app source condes but also complete env config. 
 Appliation -> js app, any services needed node, npm, os layer linux,   (image)
@@ -22,7 +22,7 @@ Appliation -> js app, any services needed node, npm, os layer linux,   (image)
 **docker container** - download image and run the application when we run image the app on the OS that gives container, running intance of an image. Same image you can run multiple containers. 
 
 
-**Registry vs repository **
+**Registry vs repository**
   docker registry - service providing storage, collection od repositories 
   docker repository - collection  of related images with same name but different versions
  
