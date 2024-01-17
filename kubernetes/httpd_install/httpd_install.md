@@ -2,8 +2,7 @@ created namesapce (better practice - assigning in a group )
 labels (selector or selecting criteria) - is identificaiton give to pod to match desire state
 
 ```bash
-****MASTER NODE********
-**#Need 2 files **
+** MASTER NODE **
 mkdir projects
 cd projects
 mkdir httpd
