@@ -12,7 +12,7 @@ docker ps
 
 #permission & reboot
 
-sudo usermod -aG docker ($whoami)
+sudo usermod -aG docker $(whoami)
 sudo reboot
 docker ps
 
