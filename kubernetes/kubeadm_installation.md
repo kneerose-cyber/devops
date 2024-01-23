@@ -12,7 +12,8 @@ This guide outlines the steps needed to set up a Kubernetes cluster using kubead
 * Master(1): 2 vCPUs - 4GB Ram
 * Worker(2): 2 vCPUs - 2GB RAM
 * OS:     Ubuntu 16.04 or CentOS/RHEL 7
-
+* Master Node: 2379,6443,10250,10251,10252
+* Worker Node: 10250,30000-32767
 
 
 
