@@ -8,14 +8,11 @@ This guide outlines the steps needed to set up a Kubernetes cluster using kubead
 * sudo privileges
 * Internet access
 * t2.medium instance type or higher
+* AWS
+* Master(1): 2 vCPUs - 4GB Ram
+* Worker(2): 2 vCPUs - 2GB RAM
+* OS:     Ubuntu 16.04 or CentOS/RHEL 7
 
-  
-0a. Kubernetes Cluster Nodes(3):
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Cloud: Google Compute Engine (GCE)
-Master(1): 2 vCPUs - 4GB Ram  
-Worker(2): 2 vCPUs - 2GB RAM
-OS:     Ubuntu 16.04 or CentOS/RHEL 7
 
 
 0b. Firewall Rules (Ingress): 
