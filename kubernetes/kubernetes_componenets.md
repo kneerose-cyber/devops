@@ -28,7 +28,7 @@
  Test scenario
   When deleting one pod or multiple pods the control managers get reported by kubelet running on worker node, then control manager send info to api server and request is sent to worker node and  it will spun up the pods mentioned on yaml file, no interruption on the service. you can keep checking the browser if it's apche or web servers.
   To completely kill/shutdown httpd, nginx - update yaml file replica 0 and apply, delete or kubectl cmd.
-```
+```bash
 
 * secrets and config maps ->  particualr variable application then declre in config map. 
                             deployment is desired state of pod. attach config maps, all variable declare then will go to pods. 
