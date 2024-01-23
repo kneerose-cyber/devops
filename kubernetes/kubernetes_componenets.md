@@ -7,31 +7,28 @@
 
 * config - to run container (yaml file) manifest (deisred state) , nginx container etc, ENV variable, it will create pod on worker node
 
-*labels (selector or selecting criteria) - is identificaiton give to pod to match desire state
+* labels (selector or selecting criteria) - is identificaiton give to pod to match desire state
 
-*selectors are criteria where you're matching.
-*service
+* selectors are criteria where you're matching.
+* service
     node font, cluster ip and load balancer 
 
+* autohealing - try to delete pod and app wont stop within a second scheduler gets inform, schedule send request to create new pod,  
 
 
-autohealing - try to delete pod and app wont stop within a second scheduler gets inform, schedule send request to create new pod,  
+* Pods without a Higher-Level Controller:
+  1: Deployment:, 2. StatefulSet: 3. ReplicaSet:
+
+*  NameSpace - namesspace (better practice - assigning in a group )
+
+* Nodeport - While using type Nodeport  the port rande will be 3000-34000 range
 
 
-Pods without a Higher-Level Controller:
-   Deployment:, 2. StatefulSet: 3. ReplicaSet:
-
-
-NameSpace - namesapce (better practice - assigning in a group )
-
-
-Nodeport - While using type Nodeport  the port rande will be 3000-34000 range
-
-
-
-Test scenario
+```bash
+ Test scenario
   When deleting one pod or multiple pods the control managers get reported by kubelet running on worker node, then control manager send info to api server and request is sent to worker node and  it will spun up the pods mentioned on yaml file, no interruption on the service. you can keep checking the browser if it's apche or web servers.
   To completely kill/shutdown httpd, nginx - update yaml file replica 0 and apply, delete or kubectl cmd.
+``bash
 
 
 
