@@ -56,13 +56,13 @@ Must of the function with kubectl create, display, describe, set, edit, deleted
 
 
 * high availability cluster
-  3-5 control plane (master) - active, stand by standby. 6443 - etcd replication - specific port of other etcd can be reached data across on all dc. (api server) are stateles .. controller manager schduel active active and other standy by 
-  they elect one master so they don't mess up. they don't work at same time. 
+  3-5 control plane (master) - active, stand by standby. 6443 - etcd replication - specific port of other etcd can be reached data across on all dc. (api server) are stateles .. controller manager scheduler active and others stand by 
+  they elect one master so they don't mess up. they don't work at the same time. 
   through LB they talk to Kublet. 
 
-* EKS - on demand if master goes down.
+* EKS - on demand if the master goes down.
 
-* 3a's of k8s security API server -> authentication -> authorization -> admission contreoller -> process request 
+* 3a's of k8s security API server -> authentication -> authorization -> admission controller -> process request 
 
 * role and role binding  user define, assign a role. 
 
@@ -76,14 +76,14 @@ Must of the function with kubectl create, display, describe, set, edit, deleted
 
 * scaling
   replicas and scale up and down based on traffic 
-    kubectl describe deploy neginx | grep stragety 
+    kubectl describe deploy Nginx | grep strategy 
 
 
   ```bash Zerotime deployment - 
    deployment strategy - scaling 
-    recrete - V1 to V2 (downtime assocaited) - avoid 2 adifferent version running, qa, deployment env
+    recreate - V1 to V2 (downtime associated) - avoid 2 different version running, QA, deployment env
     rolling update - upgraded one at a time,  (it's default ) 25% deployment 
-    canary deployment - upgrade one host and test and do on all.  advantage user get oppurinity to roll out before end, slow rollout process
+    canary deployment - upgrade one host and test and do on all.  advantage users get oppurtunity to roll out before the end, the slow rollout process
     blue/green - advantage, big cluster 
 
 rollback - kubcetcl rollout undo deployment nginx-deploy --to-revision=1 ```
@@ -92,12 +92,12 @@ rollback - kubcetcl rollout undo deployment nginx-deploy --to-revision=1 ```
 
 * application upgrade
   imperative - cmd line
-  delcarative  - .yaml file
+  declarative  - .yaml file
 
 * kubectl rollout status or history 
 
 * config maps 
-  docker hub or google container registry. 
+  docker hub or Google container registry. 
   custom configs
 
 * config maps creation by syntax and from file
@@ -109,7 +109,7 @@ rollback - kubcetcl rollout undo deployment nginx-deploy --to-revision=1 ```
 * node selector 
   like disk : ssd 
 
-* resource - request and limits
+* resource - request, and limits
   cpu: "20m" memory: "100mu"
 
 
@@ -121,37 +121,34 @@ rollback - kubcetcl rollout undo deployment nginx-deploy --to-revision=1 ```
 * helm -package manager like yum in centos, called charts. 
 
 * services and networking 
-   Basic network terminology, kubenetes cluster networking & ports,  CNI, connectivity between pod to pod/ container, services, DNS, service recovery, endpoint
+   Basic network terminology, Kubernetes cluster networking & ports,  CNI, connectivity between pod to pod/ container, services, DNS, service recovery, endpoint
 
 * container network interface - node 1 to node 1 connection,  CNI plugins install
-   pod to pod communication within cluster, pod ip management get unique ips. 
+   pod-to-pod communication within the cluster, pod IP management gets unique ips. 
    weave (net) plugin, flannel, canal, calico, 
 
 
 * services provide
  stable ip- dns-port , pods are scaled up and down
- it uses pod label tor track pod status, head and forward request to app pod and db pods
+ it uses pod label to track pod status, and head and forward requests to app pod and db pods
  types; 3
-    cluster IP (within the cluster) confine to cluster - within a cluster(DB), pod labels.
-    node port - web application outside world create service nodeport, external ip and port
-    load balancer service - between pods, drawback(expensive) - increase cost. ingres resource could be solutions
+    cluster IP (within the cluster) confined to cluster - within a cluster(DB), pod labels.
+    node port - web application outside world create service node port, external IP and port
+    load balancer service - between pods, drawback(expensive) - increase cost. Ingres resources could be solutions
 
 
 * kube proxy - agent like kublet, primary purpose, connection and perform LB. front end and backend , pods communicate through services, provides stable Ip and services. 
 
+* kube proxy have iptables, node A to node B connection.  watches for newly created services and endpoints, it updated ip tables with new ports and ip addresses, making it routable in the new kubenetics cluster. performs LB. 
 
-* kube proxy have iptables, node A to node B connection.  watches for newly created services and end points, it updated ip tables with new port and ip address, making it routable in new kubenetics cluster. performs LB. 
+* DNS in Kubernetes
+   core DNS pods and kube DNS,   
 
-* DNS in kubernetes
-   coreDNS pods and kube DNS,   
+* Service discovery - pods don't communicate using IP address. pod is short-lived. pods use service objects to expose within and outside of the cluster. 
+pobs labels to discovery from service labels.  consumer pod uses service discovery to connect to producer service.  
+  service discovery -> env variables, DNS.  it will create DNS service ip on resolv. conf using dns name. pod to pod connection using DNS 
 
-
-
-* Service discovery - pods don't communicate using ip address. pod is short lived. pods uses service object to expose within and outside of cluster. 
-pobs labels to dsicovery from service labels.  consumer pod uses service dicovery to connect to producer service.  
-  service discovery -> env variables, DNS.  it will create DNS servie ip on resolv.conf using dns name. pod to pod connection using DNS 
-
-* Endpoint  (track ip address of pods that service sned traffic to. pod ip added to endpoint )
+* Endpoint  (track IP address of pods that service send traffic to. pod ip added to endpoint )
   frontend pod -> backend service -> backend pod
   backend service using labels and selectors to send traffic to backend pods
   kubectl get ep
@@ -164,15 +161,15 @@ pobs labels to dsicovery from service labels.  consumer pod uses service dicover
 * pod to service communication
 
 * pod communicate with services. 
- communication between pods ona cross nodes - use CNI 
+ communication between pods on cross nodes - use CNI 
     node 1 -> 2 pod running -> eth001 -> bridge (subnet/net block) -> iptables -> etho gayteway ip -> CNI -> eth0 gateway ip - > brdieg (net block) -> veth003 -> 2 pod -> node 2
 
-* interenet to services -
-   exposing app to internet
-     - node port service - drawback pods are accesible to port 30124, if node fails, then no service fir cleint. it is for testing and demos not for prod, node port open ports on * every node to internet security isssues.  NO LB so traffic is directd to only one nodes. 
-     - load balancer - spreading evenly across healthy node -> type: loadbalancer have external ip address. 
-     - LB  - for each service can be expensive so it better to use LB and ingress controller. 
-     (single ip for all services -> ingres -> mycompany.com -> service -> pod
+* Internet to services -
+   exposing the app to the internet
+     - node port service - drawback pods are accessible to port 30124, if a node fails, then no service for a client. it is for testing and demos not for prod, node port open ports on * every node to internet security issues.  NO LB so traffic is directed to only one node. 
+     - load balancer - spreading evenly across healthy node -> type: load balancer have external ip address. 
+     - LB  - for each service can be expensive so it is better to use LB and ingress controller. 
+     (single IP for all services -> ingres -> mycompany.com -> service -> pod
         - ingres controller provides host and path determines where it needs to send
            like -> mail.mycpmay.com or news.company.com  - news-service - new -service  etc
 
@@ -180,10 +177,10 @@ pobs labels to dsicovery from service labels.  consumer pod uses service dicover
           2 parts ingress controller - software application read -> ingress resource yaml file and routes traffic based on yml file. 
 
 *  mail.mycompany.com -> LB (single external ip ) ->  ingress controller  -> notices mail.mycompany.com  rule is mapped to mail-service on ingress resource and fwd based on it. 
-     ngnix -ingrs controller -> deployment -> 1) deploying nginx, namssapce, configmaps, roles and cluster roles, service accoutns 
-            ingrs controller -> service -> exposing service LB 
+     ngnix -ingress controller -> deployment -> 1) deploying Nginx, namespace, config maps, roles and cluster roles, service accounts 
+            ingress controller -> service -> exposing service LB 
 
-* configurating ingress controller. kubetctl get namspaces. installing using mandatory.yaml file.
+* Configuring ingress controller. kubetctl get namespaces. installing using mandatory.yaml file.
 
  
 * ingres rules -> 
@@ -194,26 +191,26 @@ pobs labels to dsicovery from service labels.  consumer pod uses service dicover
 
            need to put paths in kind: Ingress  (define rule in ingress resouce yaml)
 
-* ingres resouce -> 
+* ingres resource -> 
              single service (LB) -> no rules just one like -> mail-svc -> pod
              Name-based virtual hosting -using hostname - multiple host using one IP using rules:
              using paths like /inbox or /sent etc and different port
     
 *   Storage
      volume types
-      temp - empty dir (pod get destroy data gets destroyed) and host path (data will be retein on host dir )
-      persistent -  gce, awselastic block storage and azure
+      temp - empty dir (pod get destroy data gets destroyed) and host path (data will be retained on host dir )
+      persistent -  gce, AWS elastic block storage and azure
       network - nfs, iscsi, glusterfs
       config - config maps, secrets, downwardAPI
 
-* pv and pvc -  Admins setups up persisten stiorage, admin create PV, develips creates PVC (claim) , creates pod with colume with pVC, other can't claim until pvc is deleted. 
+* pv and pvc -  Admins setups up persistent storage, admin create PV, develops creates PVC (claim) , creates pod with volume with pVC, others can't claim until pvc is deleted. 
 
-* volume -> access mode -> Read write once , read only many, read write many 
+* volume -> access mode -> Read write once, read only many, read write many 
 
-* reclaim policies -  storage disk -> pv -> pvc -> pod , end of application life cycle, delete pod and pvc .  Reclaim -> retain even pvc delete, pv is there. need to delete 
-     storage cloud storage and Pv as wlel. 
-      delete -> kubenetes autmatically delete pv and storage disk, after pvc gets delete, delette is defualt recliam policy. 
+* reclaim policies -  storage disk -> pv -> pvc -> pod, end of application life cycle, delete pod and pvc.  Reclaim -> retain even pvc delete, pv is there. need to delete 
+     storage cloud storage and Pv as well. 
+      delete -> Kubernetes automatically delete pv and storage disk, after pvc gets deleted, delete is default reclaim policy. 
 
 * perssitent volumme -> PVC -> mount volume in pod. 
-* storage class -> pv -> pvc -> storage class - dynamic . cloud  providerhave standard, regular and slower (hdd and ssd) . Local we need to setup. 
+* storage class -> pv -> pvc -> storage class - dynamic . cloud  providers are standard, regular, and slower (hdd and ssd) . Local we need to setup. 
 * standard (default). neeed ssd then storageclassname: gold 
