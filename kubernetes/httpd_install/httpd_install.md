@@ -43,7 +43,7 @@ delete all pods
 ```
 
 ## AUTO HEALING
-After deleting the scheduler will spin up pods mentioned on yaml file, no interruption in the service you can keep checking the browser
+After deleting the control manager get status of cluster, pods which  will spin up pods mentioned on yaml file, no interruption in the service you can keep checking the browser
 
 ## TO completely kill/shutdown httpd update 
 ```bash
