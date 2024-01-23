@@ -1,0 +1,69 @@
+In this demo:
+-------------
+a. We will schedule the Pods to certain nodes, which statisfy the label assigned to the node.
+
+***************************************************************************************************
+
+1. Labeling Node:
+-----------------
+
+kubectl get nodes --show-labels
+kubectl label nodes worker-1 disktype=ssd
+
+kubectl get nodes --show-labels
+kubectl get pods -o wide
+
+***************************************************************************************************
+
+2. Deploying Node-Selector YAML:
+--------------------------------
+
+# nodeSelector-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodeselector-pod
+  labels:
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+  nodeSelector:
+    disktype: ssd
+
+-------
+
+kubectl apply -f ns.yaml
+
+
+***************************************************************************************************
+
+3. Testing:
+-----------
+
+kubectl get pods -o wide
+kubectl get nodes --show-labels
+
+# Let's Delete and Deploy "again" to ensure Pod is deployed on the same node which is lablelled above.
+kubectl delete -f ns.yaml
+kubectl apply -f ns.yaml
+
+kubectl get pods -o wide
+kubectl get nodes --show-labels
+
+
+***************************************************************************************************
+
+4. Cleanup:
+-----------
+kubectl label nodes worker-1 disktype-
+kubectl delete pods nodeselector-pod
+
+
+***************************************************************************************************
+
+
+
+

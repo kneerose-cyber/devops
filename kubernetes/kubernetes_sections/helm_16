@@ -1,0 +1,11 @@
+it's like yum repo, package manage
+
+myapp/ 
+   charts.yaml, readme, templates/, values.yaml, charts/, requirements.yaml
+
+helm create myapp
+helm package myapp
+helm install .\myapp\ --name myapp-chart
+helm ls
+helm status myapp-chart
+helm delete myapp-chart

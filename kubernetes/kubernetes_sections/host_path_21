@@ -1,0 +1,171 @@
+We will create a Pod with HostPath volume. Then we will validate the same.
+
+***************************************************************************************************
+
+# 1. HostPath YAML file
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-hostpath
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      volumeMounts:
+      - mountPath: /test-mnt
+        name: test-vol
+  volumes:
+  - name: test-vol
+    hostPath:
+      path: /test-vol
+
+
+Deploy:
+-------
+kubectl apply -f nginx-hostpath.yaml
+
+
+***************************************************************************************************
+
+
+2. Displaying Pods and Hostpath
+--------------------------------
+
+kubectl get pods
+
+kubectl exec nginx-hostpath -- df /test-mnt
+
+
+***************************************************************************************************
+
+3. Testing: 
+-----------
+
+From HOST:
+~~~~~~~~~~
+
+a. First, will create the file on the host-path on the worker node where this pod is running.
+
+cd /test-vol
+
+echo "Hello from Host" > from-host.txt
+
+cat from-host.txt
+
+
+From POD:
+~~~~~~~~
+b. Next, we will login to the Pod and will create the test file on the host-path directory from inside the Pod.
+
+kubectl exec nginx-hostpath -it -- /bin/sh
+
+cd /test-mnt
+
+echo "Hello from Pod" > from-pod.txt
+
+cat from-pod.txt
+
+
+From Host:
+~~~~~~~~~~
+c. Finally, we will validate that file from the worker node.
+
+cd /test-vol
+
+ls
+
+cat from-pod.txt
+
+
+***************************************************************************************************
+
+5. Clean up
+
+kubectl delete po nginx-hostpath
+kubectl get po
+ls /test-vol
+
+
+***************************************************************************************************
+
+MY-OUTPUT:
+----------
+
+1. Deploying:
+--------------
+root@master:~# kubectl apply -f pod-hostpath.yaml
+pod/nginx-hostpath created
+
+2. Displaying Pods and Hostpath:
+-----------------------------
+root@master:~# kubectl get pods -o wide
+NAME                                        READY   STATUS    RESTARTS   AGE     IP           NODE     NOMINATED NODE   READINESS GATES
+ingress-nginx-controller-7fc74cf778-9vn8d   1/1     Running   0          4h49m   10.44.0.14   worker   <none>           <none>
+nginx-hostpath                              1/1     Running   0          18s     10.44.0.1    worker   <none>           <none>
+
+root@master:~# kubectl exec nginx-hostpath -- df /test-mnt
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/sda1        9983268 4413176   5553708  45% /test-mnt
+
+
+3. Testing:
+-----------
+
+a. First, will create the file on the host-path on the worker node where this pod is running.
+---------------------------------------------------------------------------------------------
+root@worker:/# cd /test-vol
+root@worker:/test-vol# echo "Hello from Host" > from-host.txt
+root@worker:/test-vol#
+root@worker:/test-vol# cat from-host.txt
+Hello from Host
+root@worker:/test-vol#
+
+b. Next, we will login to the Pod and will create the test file on the host-path directory from inside the Pod.
+--------------------------------------------------------------------------------------------------------------
+root@master:~# kubectl exec nginx-hostpath -it -- /bin/sh
+#
+# cd /test-mnt
+#
+# echo "Hello from Pod" > from-pod.txt
+#
+# cat from-pod.txt
+Hello from Pod
+#
+# exit
+
+c. Finally, we will validate that file from the worker node.
+root@worker:/test-vol# ls
+from-host.txt  from-pod.txt
+root@worker:/test-vol#
+root@worker:/test-vol# cat from-pod.txt
+Hello from Pod
+root@worker:/test-vol#
+
+d. Delete the Pod
+-----------------
+root@master:~# kubcetl delete -f pod-hostpath.yaml
+kubcetl: command not found
+root@master:~# kubectl delete -f pod-hostpath.yaml                                                                           
+pod "nginx-hostpath" deleted
+root@master:~# 
+
+e. Files are still there after deleting the Pod
+----------------------------------------------
+root@worker:/test-vol# ls
+from-host.txt  from-pod.txt
+root@worker:/test-vol#
+
+f. Recreate the Pod with same host-path
+---------------------------------------
+root@master:~# kubectl apply -f pod-hostpath.yaml
+pod/nginx-hostpath created
+root@master:~#
+
+g. Files are still there (if it is deployed on same worker node)
+----------------------------------------------------------------
+root@master:~# kubectl exec nginx-hostpath -- ls /test-mnt
+from-host.txt
+from-pod.txt
+root@master:~#
+
