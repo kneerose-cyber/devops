@@ -3,37 +3,37 @@
 
 * micro services -  small independent services communicate each other using APIs and loosely coupled, for example facebook messanger and feed might be running on different servers so only 1 service will be impacted(meaning feed down) instead of whole application going down.
 
-* pods vs container -  pods is the smallest unit in kubernetics and can host multiple containers in a pod but it is recommened to do 1 pod = 1 container.  Container is isolated and executable software package like nginx, httpd etc. Pods are useful for scenarios where containers need to share resources, such as network or storage, and are deployed and scaled together.
+* pods vs container -  pods is the smallest unit in kubernetics and can host multiple containers in a pod but it is recommended to do 1 pod = 1 container.  The container is an isolated and executable software package like nginx, httpd etc. Pods are useful for scenarios where containers need to share resources, such as network or storage, and are deployed and scaled together.
 
-* config - to run container (yaml file) manifest (deisred state) , nginx container etc, ENV variable, it will create pod on worker node
+* config - to run container (yaml file) manifest (desired state) , nginx container etc, ENV variable, it will create pod on worker node
 
-* labels (selector or selecting criteria) - is identificaiton give to pod to match desire state
+* labels (selector or selecting criteria) - is identification give to the pod to match desired state
 
 * selectors are criteria where you're matching.
 * service
     node font, cluster ip and load balancer 
 
-* autohealing - try to delete pod and app wont stop within a second scheduler gets inform, schedule send request to create new pod,  
+* auto healing - try to delete pod and app wont stop within a second scheduler gets inform, schedule send request to create new pod,  
 
 
 * Pods without a Higher-Level Controller:
   1: Deployment:, 2. StatefulSet: 3. ReplicaSet:
 
-*  NameSpace - namesspace (better practice - assigning in a group )
+*  NameSpace - namespace (better practice - assigning in a group )
 
 * Nodeport - While using type Nodeport  the port rande will be 3000-34000 range
 
 
 ```bash
  Test scenario
-  When deleting one pod or multiple pods the control managers get reported by kubelet running on worker node, then control manager send info to api server and request is sent to worker node and  it will spun up the pods mentioned on yaml file, no interruption on the service. you can keep checking the browser if it's apche or web servers.
-  To completely kill/shutdown httpd, nginx - update yaml file replica 0 and apply, delete or kubectl cmd.
+  When deleting one pod or multiple pods the control managers get reported by kubelet running on worker node, then control manager sends info to api server and a request is sent to worker node and  it will spun up the pods mentioned on yaml file, no interruption on the service. you can keep checking the browser if it's apache or web servers.
+  To completely kill/shutdown httpd, nginx - update yaml file replica 0 and apply, delete, or kubectl cmd.
 ```
 
-* secrets and config maps ->  particualr variable application then declre in config map. 
-                            deployment is desired state of pod. attach config maps, all variable declare then will go to pods. 
+* secrets and config maps ->  particular variable application then declare in config map. 
+                            deployment is the desired state of the pod. attach config maps, all variables declare then will go to pods. 
 
-* Everything is manifest file in kubnernetics desired state and yaml file
+* Everything is the manifest file in kubnernetics desired state and yaml file
 
 * pvc and pv storage clasess - statefull(attach volume in pod) and stateless 
 
@@ -49,7 +49,7 @@
 
 
 ```bash
-**Must of the function with kubectl create, display, describe, set, edit, deleted** 
+Must of the function with kubectl create, display, describe, set, edit, deleted
 ```
 
 * take etcd backup of recovery and restore - etcdctl cmd snapshot , etcdctl snapshot restore 
