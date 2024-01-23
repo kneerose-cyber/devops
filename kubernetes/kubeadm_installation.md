@@ -9,6 +9,30 @@ This guide outlines the steps needed to set up a Kubernetes cluster using kubead
 * Internet access
 * t2.medium instance type or higher
 
+  
+0a. Kubernetes Cluster Nodes(3):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cloud: Google Compute Engine (GCE)
+Master(1): 2 vCPUs - 4GB Ram  
+Worker(2): 2 vCPUs - 2GB RAM
+OS:     Ubuntu 16.04 or CentOS/RHEL 7
+
+
+0b. Firewall Rules (Ingress): 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Master Node: 2379,6443,10250,10251,10252 
+Worker Node: 10250,30000-32767
+
+
+0c. NOT Mandatory. For better visibility.
+-----------------------------------------
+Add below lines to ~/.bashrc
+Master Node:
+PS1="\e[0;33m[\u@\h \W]\$ \e[m "
+
+Worker Node:
+PS1="\e[0;36m[\u@\h \W]\$ \e[m "
+
 ---
 
 ## Both Master & Worker Node
