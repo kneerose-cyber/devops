@@ -15,22 +15,7 @@ This guide outlines the steps needed to set up a Kubernetes cluster using kubead
 
 
 
-0b. Firewall Rules (Ingress): 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Master Node: 2379,6443,10250,10251,10252 
-Worker Node: 10250,30000-32767
 
-
-0c. NOT Mandatory. For better visibility.
------------------------------------------
-Add below lines to ~/.bashrc
-Master Node:
-PS1="\e[0;33m[\u@\h \W]\$ \e[m "
-
-Worker Node:
-PS1="\e[0;36m[\u@\h \W]\$ \e[m "
-
----
 
 ## Both Master & Worker Node
 
