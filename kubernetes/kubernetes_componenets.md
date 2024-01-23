@@ -1,24 +1,16 @@
 
+* monolith -  whole application running on one sever, application deployed as single unit, tighy coupled, if the host goes down all application is down or even break fix/upgrade it might take whole application down until it's clustered env.
 
+* micro services -  small independent services communicate each other using APIs and loosely coupled, for example facebook messanger and feed might be running on different servers so only 1 service will be impacted(meaning feed down) instead of whole application going down.
 
+* pods vs container -  pods is the smallest unit in kubernetics and can host multiple containers in a pod but it is recommened to do 1 pod = 1 container.  Container is isolated and executable software package like nginx, httpd etc. Pods are useful for scenarios where containers need to share resources, such as network or storage, and are deployed and scaled together.
 
-monolith -  whole application running on one sever, application deployed as single unit, tighy coupled, if the host goes down all application is down or even break fix/upgrade it might take whole application down until it's clustered env.
+* config - to run container (yaml file) manifest (deisred state) , nginx container etc, ENV variable, it will create pod on worker node
 
-micro services -  small independent services communicate each other using APIs and loosely coupled, for example facebook messanger and feed might be running on different servers so only 1 service will be impacted(meaning feed down) instead of whole application going down.
+*labels (selector or selecting criteria) - is identificaiton give to pod to match desire state
 
-pods vs container -  pods is the smallest unit in kubernetics and can host multiple containers in a pod but it is recommened to do 1 pod = 1 container.  Container is isolated and executable software package like nginx, httpd etc. Pods are useful for scenarios where containers need to share resources, such as network or storage, and are deployed and scaled together.
-
-
-config - to run container (yaml file) manifest (deisred state) 
-nginx contianer etc, ENV variable, it will create pod on worker node
-
-
-
-labels (selector or selecting criteria) - is identificaiton give to pod to match desire state
-
-selectors are criteria where you're matching.
-
- service
+*selectors are criteria where you're matching.
+*service
     node font, cluster ip and load balancer 
 
 
@@ -109,7 +101,7 @@ application Deployment
 scaling
   replicas and scale up and down based on traffic 
 
-  # kubectl describe deploy neginx | grep stragety 
+   kubectl describe deploy neginx | grep stragety 
 
 
   zerodowtime deployment - 
