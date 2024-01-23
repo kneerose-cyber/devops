@@ -41,14 +41,15 @@
 * helm (install, charts node js) - value . yaml value , template. helm install terraform or prometheus or nginx etc , 
 
 * Autoscaling - usage min replicas 1 max replicas 5
-* 
+  
 * service mesh 
    manage internal service  routing in kubenetics cluster 
-  service mesh all service talk to each other.
+   service mesh all service talk to each other.
 
 
 
-```bashMust of the function with kubectl create, display, describe, set, edit, delete```
+```bash
+Must of the function with kubectl create, display, describe, set, edit, delete```
 
 
 * take etcd backup of recovery and restore - etcdctl cmd snapshot , etcdctl snapshot restore 
