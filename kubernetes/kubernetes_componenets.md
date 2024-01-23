@@ -48,9 +48,9 @@
 
 
 
-
+```bash
 **Must of the function with kubectl create, display, describe, set, edit, deleted** 
-
+```
 
 * take etcd backup of recovery and restore - etcdctl cmd snapshot , etcdctl snapshot restore 
 
