@@ -1,6 +1,4 @@
 
-In this demo:
-~~~~~~~~~~~~~
 
 a. We will validate the K8s cluster configured using kubeadm in the previous lecture.
 

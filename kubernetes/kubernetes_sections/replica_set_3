@@ -1,5 +1,3 @@
-In this Demo:
--------------
 We will deploy the sample ReplicaSet, then Validate, Scale, Edit and Cleanup.
 
 ***************************************************************************************************

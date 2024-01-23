@@ -1,4 +1,3 @@
-In this demo:
 -------------
 a. First, we will create the test "user account" for testing this demo
 b. Next,  We will create the "ClusterRole" with list of actions performed "across all namespaces"

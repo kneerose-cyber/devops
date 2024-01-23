@@ -1,4 +1,3 @@
-In this Demo:
 -------------
 We will deploy sample application, then we will increase the application instances using kubectl scale command. Finally, we will validate the same.
 
