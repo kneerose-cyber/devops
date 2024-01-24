@@ -17,7 +17,7 @@ kubectl get pods -o wide
 2. Deploying Node-Selector YAML:
 --------------------------------
 
-# ns.yaml
+# vi ns.yaml
 apiVersion: v1
 kind: Pod
 metadata:
