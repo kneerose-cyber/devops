@@ -92,6 +92,10 @@ kubectl rollout status deploy [DEPLOYMENT-NAME]
 kubectl get deploy [DEPLOYMENT-NAME] -o wide
 
 
-6. Delete all pods
-
+6. Delete all pods and nginx deployment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 kubectl scale deployment nginx-deploy --replicas=0
+kubectl delete deployment nginx-deploy
+
+***************************************************************************************************
+
