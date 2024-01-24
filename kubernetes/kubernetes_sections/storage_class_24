@@ -1,7 +1,7 @@
 READ BEFORE YOU RUN:
 --------------------
 
-NOTE: High likely, there is some issue with using Dynamic Provisioning on Kubernetes cluster configured with Kubeadm. From little bit of Google, tells that, we need to create Service Account, then manually edit the kubelet from this post. 
+NOTE: High likely, there is some issue with using Dynamic Provisioning on Kubernetes cluster configured with Kubeadm. From little bit of Google, tells that, we need to create Service Account, then manually edit the kubelet  
 
 ERROR: From the output of "kubectl describe pvc [PVC-NAME]"
  Warning  ProvisioningFailed  31s (x3 over 2m28s)  persistentvolume-controller  Failed to provision volume with StorageClass "fast": failed to get GCE GCECloudProvider with error <nil>
@@ -10,7 +10,7 @@ https://stackoverflow.com/questions/50100219/kubernetes-failed-to-get-gce-gceclo
 
 NOW:
 ----
-Goal of this video is how to create Storage Class and use Dynamic Provisioning. This works perfectly in GKE. Will run this Demo on GKE.
+ how to create Storage Class and use Dynamic Provisioning. This works perfectly in GKE. Will run this Demo on GKE.
 
 a. First, we will create the Storage Class. 
 b. Then, we will test it by deploying PVC using above Storage Class. This will automatically create PV.
