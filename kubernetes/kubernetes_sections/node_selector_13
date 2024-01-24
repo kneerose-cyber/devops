@@ -7,7 +7,7 @@ a. We will schedule the Pods to certain nodes, which statisfy the label assigned
 -----------------
 
 kubectl get nodes --show-labels
-kubectl label nodes worker-1 disktype=ssd
+kubectl label nodes <worker_name> disktype=ssd
 
 kubectl get nodes --show-labels
 kubectl get pods -o wide
