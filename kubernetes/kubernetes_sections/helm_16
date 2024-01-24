@@ -4,12 +4,30 @@ Helm is a package manager for Kubernetes applications, and it allows you to defi
 it's like yum repo, package manage
 
 
-myapp/ 
-   charts.yaml, readme, templates/, values.yaml, charts/, requirements.yaml
+download and install helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+helm version
+
+Deploy helm on kubernetes cluster
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/helm/master/scripts/start.sh
+helm init --history-max 200
+helm version
 
 helm create myapp
+cd myapp
+
+vi templates/deployment.yaml check and edit based on desired state
+
+vi values.yaml - add here so it will be used on the templated
+
 helm package myapp
+
+
+
 helm install .\myapp\ --name myapp-chart
 helm ls
 helm status myapp-chart
 helm delete myapp-chart
+helm uninstall myapp-chart
