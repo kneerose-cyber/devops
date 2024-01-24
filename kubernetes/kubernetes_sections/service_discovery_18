@@ -1,5 +1,5 @@
-First, we will deploy the sample application and expose it within kubernetes cluster using Cluster Service.
-Next, we will deploy testing pod from where we will discover the above Service from inside this test Pod.
+Deploy the sample application and expose it within kubernetes cluster using Cluster Service.
+ deploy testing pod from where we will discover the above Service from inside this test Pod.
 
 ***************************************************************************************************
 
