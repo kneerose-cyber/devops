@@ -12,8 +12,6 @@ If not available, then you can do the same by following below steps.
 
 ----------
 
-mv /tmp/etcd-download-test/etcdctl /usr/bin
-
 ETCD_VER=v3.4.14
 
 # choose either URL
@@ -28,8 +26,8 @@ curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/
 tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/etcd-download-test --strip-components=1
 rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
 
-mv /tmp/etcd-download-test/etcdctl /usr/bin
-
+sudo mv /tmp/etcd-download-test/etcdctl /usr/bin
+etcdctl version
 ----------
 
 Referece: https://github.com/etcd-io/etcd/releases
