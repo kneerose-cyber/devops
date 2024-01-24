@@ -1,4 +1,8 @@
+
+Creating a Helm chart in Kubernetes involves creating a directory structure, defining configuration files, and packaging them into a Helm chart. 
+Helm is a package manager for Kubernetes applications, and it allows you to define, install, and upgrade even the most complex Kubernetes applications.
 it's like yum repo, package manage
+
 
 myapp/ 
    charts.yaml, readme, templates/, values.yaml, charts/, requirements.yaml
