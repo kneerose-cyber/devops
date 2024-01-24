@@ -83,18 +83,13 @@ kubectl logs <POD-NAME> -n <NAME-SPACE>
 NOTE: Metrics-Server
 ~~~~~~~~~~~~~~~~~~~~
 a. To run below top commands, you need to have "Metrics-Server" Installed. 
-b. For step-by-step demo and instructions please refer to the "Installing Metrics Server" lecture & demos that you find in "Troubleshooting" section in this series.
-https://www.udemy.com/course/ultimate-cka-certified-kubernetes-administrator/learn/lecture/26854680#questions
-c. Again, below are the high-level steps.
 
 Installing Metrics-Server:
 --------------------------
 git clone https://github.com/kubernetes-sigs/metrics-server.git
 
-kubectl apply -k metrics-server/manifests/test/
+kubectl apply -k  .yaml file 
 
-NOTE: If you encounter any Image error, try updating imagePullPolicy: Always 
-in metrics-server/manifests/test/patch.yaml
 
 Give it a minute to gather the data and then run below Top Commands:
 
