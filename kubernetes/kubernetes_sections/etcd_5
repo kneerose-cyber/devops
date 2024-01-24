@@ -46,8 +46,6 @@ kubectl run nginx-pod --image=nginx
 
 2. Backing up ETCD Database:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 2a. Set ETCDCTL_API version to 3:
 ---------------------------------
 export ETCDCTL_API=3
@@ -56,7 +54,7 @@ etcdctl version
 
 2b. Taking ETCD Backup:
 -----------------------
-etcdctl --endpoints=https://127.0.0.1:2379 \
+sudo etcdctl --endpoints=https://127.0.0.1:2379 \
         --cacert=/etc/kubernetes/pki/etcd/ca.crt \
         --cert=/etc/kubernetes/pki/etcd/server.crt \
         --key=/etc/kubernetes/pki/etcd/server.key \
@@ -64,7 +62,7 @@ etcdctl --endpoints=https://127.0.0.1:2379 \
 
 2c. ETCD Backup - Status:
 -------------------------
-etcdctl --write-out=table snapshot status /opt/snapshot-pre-boot.db
+sudo etcdctl --write-out=table snapshot status /opt/snapshot-pre-boot.db
 
 
 
@@ -86,12 +84,12 @@ kubectl get pods
 
 4a). 
 
-etcdctl  --data-dir /var/lib/etcd-from-backup \
+sudo etcdctl  --data-dir /var/lib/etcd-from-backup \
          snapshot restore /opt/snapshot-pre-boot.db
 
 ---------------------------------------------------------------------------------------------
 
-ls -l /var/lib/etcd-from-backup/
+sudo ls -l /var/lib/etcd-from-backup/
 
 ---------------------------------------------------------------------------------------------
 
