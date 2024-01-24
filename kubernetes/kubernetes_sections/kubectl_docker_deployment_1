@@ -1,11 +1,5 @@
 
-
-a. We will validate the K8s cluster configured using kubeadm in the previous lecture.
-
-b. At the end, we will deploy same deployment and will ensure everything is working as it should be.
-
-
-***************************************************************************************************
+*******************************************************************************************
 
 1. Validating CMD Tools:  kubeadm & kubectl:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,7 +24,7 @@ kubectl version
 Ensure all nodes including Master and Worker nodes are "Ready":
 ---------------------------------------------------------------
 kubectl get nodes 
-kubectl get nodes –o wide
+kubectl get nodes -o wide
 
 
 ***************************************************************************************************
@@ -41,7 +35,7 @@ kubectl get nodes –o wide
 
 Ensure all K8s Master node components are in "Running" status:
 --------------------------------------------------------------
-kubectl get pods –n kube-system
+kubectl get pods -n kube-system
 kubectl get pods -n kube-system -o wide
 
 
@@ -75,12 +69,12 @@ kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
 5b). Validate Deployment:
 -------------------------
 kubectl get deploy
-kubectl get deploy –o wide
+kubectl get deploy -o wide
 
 5c). Validating Pods are in "Running" status:
 ---------------------------------------------
 kubectl get pods 
-kubectl get pods –o wide
+kubectl get pods -o wide
 
 5d). Validate containers are running on respective worker nodes: master
 ----------------------------------------------------------------
