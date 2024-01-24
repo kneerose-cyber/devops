@@ -1,5 +1,5 @@
 -------------
-a. First, we will create the test "user account" for testing this demo
+a. First, we will create the test "user account" for testing 
 b. Next,  We will create the "ClusterRole" with list of actions performed "across all namespaces"
 c. After that, We will assign this ClusterRole to "user" by creating "ClusterRoleBinding"
 d. Finally, we will test the above configuration by deploying sample applications.
