@@ -120,7 +120,9 @@ kubectl get nodes
 If you want to label worker nodes, you can use the following command:
 
 ```bash
+kubectl get nodes
 kubectl label node <node-name> node-role.kubernetes.io/worker=worker
+kubectl get nodes (ROLES should show worker)
 ```
 
 ---
