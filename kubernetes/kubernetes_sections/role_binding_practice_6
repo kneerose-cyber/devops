@@ -8,7 +8,7 @@ openssl genrsa -out appuser.key 2048
 openssl req -new -key appuser.key -out appuser.csr -subj "/CN=appuser"
 
 # Singing CSR using K8s Cluster "Certificate" and "Key"
-openssl x509 -req -in appuser.csr \
+sudo openssl x509 -req -in appuser.csr \
         -CA /etc/kubernetes/pki/ca.crt \
         -CAkey /etc/kubernetes/pki/ca.key \
         -CAcreateserial \
