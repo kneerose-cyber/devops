@@ -1,4 +1,4 @@
-We will create the sample deployment and expose it using nodePort service. Finally we will test it!
+We will create the sample deployment and expose it using nodePort service. Finally we will test it! , you can check httpd folder as well
 
 ***************************************************************************************************
 
