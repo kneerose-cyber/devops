@@ -124,5 +124,11 @@ kubectl label node <node-name> node-role.kubernetes.io/worker=worker
 ```
 
 ---
+## work and master
+```bash
+systemctl status  docker.service
+systemctl status kubelet.service
+sudo ss -tulpn | grep 6443 (api-server)
+```
 
 
