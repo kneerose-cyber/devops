@@ -1,4 +1,4 @@
-
+# THIS IS NOT PRIORITY TO RUN BUT TO UNDERSTAND HOW TO TAKE BACKUP OF ETCD AND WHY it' important
 
 1. PRE-REQ: Installing "etcdctl" client:
 ----------------------------------------
