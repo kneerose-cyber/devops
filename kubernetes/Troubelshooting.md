@@ -123,13 +123,11 @@ Note: Give it a minute if nothing shows up in top command output.
 ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
-
-NOW BEFORE YOU RUN:
--------------------
 a. "kubectl top" command plays important role in monitoring Pods and containers resources such as CPU and Memory.
 b. To run "kubectl top..." we need to INSTALL "Metrics Server" on K8s cluster
 
-
+NOW BEFORE YOU RUN:
+-----------------
 ***************************************************************************************************
 
 0. PRE-REQ: Installing Metrics-Server (Required for "kubectl top" command)
