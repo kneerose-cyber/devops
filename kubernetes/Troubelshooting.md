@@ -8,42 +8,40 @@ Troubleshooting
   k8 dashboard for visual represetation , kube state metrics - cpu, memory, network. 
   Probes - health status of container and pod, sometime take out pod/container and fix. 
 
-  **open source **- prometheus, grafana, elk stack, kubewatch, weave scope.
+**open source** - prometheus, grafana, elk stack, kubewatch, weave scope.
+**paid** - datadog, appdynamics.
 
-**  paid** - datadog, appdynamics.
+**data source** (container run time, pods, kubenetes, nodes ) - > aggregrator (prometheus, metrics server) -> storage (influx db, promethus time series db) -> visualization(grafana, k8 dashboard)
 
-
-  data source (container run time, pods, kubenetes, nodes ) - > aggregrator (prometheus, metrics server) -> storage (influx db, promethus time series db) -> visualization(grafana, k8 dashboard)
-
-  Logs  -> data source (logs) -> aggregrator -> DB -> visualization
+**Logs**  -> data source (logs) -> aggregrator -> DB -> visualization
 
 
-   basic troubleshooting 
-    pods -  kubectl get pods, kubectl describe pods [pod_name]
+**troubleshooting**
+  **pods**-  kubectl get pods, kubectl describe pods [pod_name]
       pending - Not enough resource, fix - deleted pod and add new
       waiting - incorrect image, does images exists in repo. fix - run manual docker pull on worker node to check if image can be pull.
       crashback or unhealthy - logs of pods and containers. kubectl exec podname -- cmd arg1
       running, but not doing as expected -  kubectl apply --validate -f mypod.yaml
 
-   replica set  - 
+   **replica set**  - 
        kubectl describe rs [replicaSet_name]
-   services - 
+   **services** - 
       selector using correct pod name, kubectl describe service [service_name] , kubectl get endpoints [service_name] , kubectl get pods --selector=run=nginx
 
-    cluster -
+    **Cluster**
            kubectl get nodes
            kubectl describe node [node_name]
            kubectl cluster-info
            kubectl get componentstatus
-     Logs -
+    **Logs**
          kubectl logs api server, schedule, controller manage, etcd. 
          manual - cat /var/log/
 
-      Services - kubeadm services
+      **Services** - kubeadm services
             kubectl get pods -n kube-system
             systemctl kubelet, docket, api-server, schedulet. manager, etcd. 
 
-       troubleshooting worker node -
+      ** troubleshooting worker node **-
              kubectl get nodes
                 issue could be - disk, network, kubelet, memory
               kubectl describe node worker-1
