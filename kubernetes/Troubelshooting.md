@@ -3,7 +3,7 @@ Troubleshooting
 **Monitoring:**
   reliability, insights, cost control -  componeent health status, cpu, memeory, usage, network, application metrics. 
 
-  Built in - cAdvisor (cpu, memory usage, from containers) each kubelet contains. 
+**Built in**- cAdvisor (cpu, memory usage, from containers) each kubelet contains. 
   Metric Server - stable Ip address, colleced data from cAdvisor and expose single location.
   k8 dashboard for visual represetation , kube state metrics - cpu, memory, network. 
   Probes - health status of container and pod, sometime take out pod/container and fix. 
