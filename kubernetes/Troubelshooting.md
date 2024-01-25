@@ -17,17 +17,19 @@ Troubleshooting
 
 
 **troubleshooting**
-  **pods**-  kubectl get pods, kubectl describe pods [pod_name]
-      pending - Not enough resource, fix - deleted pod and add new
-      waiting - incorrect image, does images exists in repo. fix - run manual docker pull on worker node to check if image can be pull.
-      crashback or unhealthy - logs of pods and containers. kubectl exec podname -- cmd arg1
-      running, but not doing as expected -  kubectl apply --validate -f mypod.yaml
+  **pods**- 
+        kubectl get pods, kubectl describe pods [pod_name]
+      **pending** - Not enough resource, fix - deleted pod and add new
+      **waiting** - incorrect image, does images exists in repo. fix - run manual docker pull on worker node to check if image can be pull.
+      **crashback or unhealthy**
+           - logs of pods and containers. kubectl exec podname -- cmd arg1
+               running, but not doing as expected -  kubectl apply --validate -f mypod.yaml
 
    **replica set**  - 
        kubectl describe rs [replicaSet_name]
        
    **services** - 
-      selector using correct pod name, kubectl describe service [service_name] , kubectl get endpoints [service_name] , kubectl get pods --selector=run=nginx
+      **selector** using correct pod name, kubectl describe service [service_name] , kubectl get endpoints [service_name] , kubectl get pods --selector=run=nginx
     **Cluster**
            kubectl get nodes
            kubectl describe node [node_name]
@@ -36,7 +38,8 @@ Troubleshooting
     **Logs**
          kubectl logs api server, schedule, controller manage, etcd. 
          manual - cat /var/log/
-    **Services** - kubeadm services
+    **Services** - 
+            kubeadm services
             kubectl get pods -n kube-system
             systemctl kubelet, docket, api-server, schedulet. manager, etcd. 
      **troubleshooting worker node**-
