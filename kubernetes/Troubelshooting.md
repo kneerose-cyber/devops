@@ -25,6 +25,7 @@ Troubleshooting
 
    **replica set**  - 
        kubectl describe rs [replicaSet_name]
+       
    **services** - 
       selector using correct pod name, kubectl describe service [service_name] , kubectl get endpoints [service_name] , kubectl get pods --selector=run=nginx
 
@@ -33,6 +34,7 @@ Troubleshooting
            kubectl describe node [node_name]
            kubectl cluster-info
            kubectl get componentstatus
+           
     **Logs**
          kubectl logs api server, schedule, controller manage, etcd. 
          manual - cat /var/log/
