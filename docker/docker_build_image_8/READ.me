@@ -1,0 +1,22 @@
+DOcker image creation involes docker file - containm scripts building image. 
+node-app/
+|-- Dockerfile
+|-- app/
+   |-- package.json
+   |-- server.js
+
+
+Build DOcker image
+ docker build -t node-app .
+
+AFter image is build, RUn docker container and access by internet
+  docker run -p 4000:3000 -d my-node-app
+  docker ps
+  docker image
+
+curl http://localhost:4000
+
+OR
+
+open chrome make sure to open 4000 to public
+http://<external_ip>:4000
