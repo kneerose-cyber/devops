@@ -54,6 +54,8 @@ Troubleshooting
 ***************************************************************************************************
  Metrics Server is responsible for gathering resource usages.
 
+ ```bash
+
 0. Pre-Req:
 -----------
 Check if your cluster is running with MetricsServer by running following commands
@@ -114,7 +116,7 @@ kubectl top pods
 kubectl top nodes
 
 Note: Give it a minute if nothing shows up in top command output. 
-
+```
 
 ***************************************************************************************************
 ***************************************************************************************************
