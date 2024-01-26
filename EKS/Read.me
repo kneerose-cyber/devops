@@ -4,7 +4,7 @@ Elastic Kubernetes Service
    - Customer VPC (EKS managed ENi) - worker nodes(ec2 instances) -> LB -> customer 
    - noge group - number of servers 
 
-
+```bash
 
 IAM
 Create a user “eks-admin” with AdministratorAccess
@@ -67,6 +67,6 @@ kubectl delete -f .
 
 eksctl delete cluster --name my-cluster --region us-west-2
 
-
+```
 
 
