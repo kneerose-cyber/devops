@@ -1,0 +1,75 @@
+NOTE - you must have followed step 1 and connectwith AWS account
+
+What is state and why is it important in Terraform?
+“Terraform must store state about your managed infrastructure and configuration. This state is used by Terraform to map real world resources to your configuration, keep track of metadata, and to improve performance for large infrastructures. This state file is extremely important; it maps various resource metadata to actual resource IDs so that Terraform knows what it is managing. This file must be saved and distributed to anyone who might run Terraform.”
+
+Remote State:
+“By default, Terraform stores state locally in a file named terraform.tfstate. When working with Terraform in a team, use of a local file makes Terraform usage complicated because each user must make sure they always have the latest state data before running Terraform and make sure that nobody else runs Terraform at the same time.”
+
+“With remote state, Terraform writes the state data to a remote data store, which can then be shared between all members of a team.”
+
+
+State Lock:
+“If supported by your backend, Terraform will lock your state for all operations that could write state. This prevents others from acquiring the lock and potentially corrupting your state.”
+
+“State locking happens automatically on all operations that could write state. You won’t see any message that it is happening. If state locking fails, Terraform will not continue. You can disable state locking for most commands with the -lock flag but it is not recommended.”
+
+--------
+
+To prevent accidental destruction of resources using the terraform destroy command, Terraform allows you to set up a lock using DynamoDB. This lock ensures that destructive operations like destroy or apply are prevented if a lock is already held by another Terraform process.
+
+
+create a DynamoDB Table for Locks:
+
+Create a DynamoDB table to store the locks. This table should have a primary key, for example, LockID.
+
+1) vi db.tf
+resource "aws_dynamodb_table" "terraform_lock" {
+  name           = "terraform-state-lock-dynamo"
+  hash_key       = "LockID"
+  read_capacity  = 5
+  write_capacity = 5
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
+
+
+Configure Terraform Backend:
+
+Update your Terraform backend configuration to include DynamoDB for state locking. Add the dynamodb_table argument with the name of the DynamoDB table you created.
+
+2) vi s3.tf 
+Note - Replace placeholders like your-s3-bucket and your-region with your actual S3 bucket and AWS region.
+
+
+
+terraform {
+  backend "s3" {
+    encrypt        = true
+    bucket         = "your-s3-bucket"
+    dynamodb_table = "terraform-state-lock-dynamo"
+    key            = "terraform.tfstate"
+    region         = "your-region"
+  }
+}
+
+ Enable Locking for Terraform Operations:
+
+When running Terraform commands, the backend will automatically acquire a lock from DynamoDB to prevent concurrent destructive operations.
+
+For example, when applying changes:
+
+3) terraform init
+   terraform plan 
+   terraform apply 
+
+
+ 
+IMP - terraform destroy (it shouldn't destroy if it's on lock state on db).
+    - inspeact cat terraform.tfstate - check state file and dynamo db table exists
+    - don't run this  terraform force-unlock <LOCK_ID> (docs) to delete the lock - only when forcing to remove lock
+    - aws dynamodb list-tables --profile=<your_profile> (you can go through dyanmo db route to delete the lock only to destroy the env)
+    - THis also solves when multiple people running apply it will lock the state and until one user apply won't complete other users can't run         terraform

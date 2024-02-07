@@ -1,0 +1,10 @@
+
+1)AWS cli install on linux server and set up IAM user/access with secret access key and access key id
+follow install -   https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+   Using the IAM user and setup amazon cli, can run and spin up instances, vpc etc from cmd line. 
+
+follow install - https://developer.hashicorp.com/terraform/tutorials/docker-get-started/install-cli
+
+follow aws configure - https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build
+

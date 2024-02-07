@@ -1,0 +1,57 @@
+Read the modules doc here - https://developer.hashicorp.com/terraform/tutorials/modules/module
+
+AWS EC2 instance using a Terraform module
+
+
+create module and mkdir modules/ec2/
+1) vi modules/ec2/main.tf This file contains the actual resource configuration for the EC2 instance.
+
+resource "aws_instance" "example" {
+  ami           = var.ami
+  instance_type = var.instance_type
+
+  tags = var.tags
+}
+
+
+2) vi main.tf  
+
+# source could be git repo 
+
+module "ec2_instance" {
+  source = "./modules/ec2"  
+
+  instance_type = var.instance_type
+  ami           = var.ami
+  tags          = var.tags
+}
+
+3) vi variables.tf
+
+variable "instance_type" {
+  description = "The type of EC2 instance to launch"
+  type        = string
+}
+
+variable "ami" {
+  description = "The AMI to use for the EC2 instance"
+  type        = string
+}
+
+variable "tags" {
+  description = "A map of tags to apply to the EC2 instance"
+  type        = map(string)
+}
+
+
+
+4) vi terraform.tfvars
+
+instance_type = "t2.micro"
+ami           = "ami-replace_withyour"
+tags = {
+  Name = "ExampleInstance"
+  Environment = "Development"
+}
+
+When you run terraform apply, Terraform will use the values provided in terraform.tfvars to instantiate the module and create the resources accordingly
