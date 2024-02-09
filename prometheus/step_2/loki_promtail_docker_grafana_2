@@ -1,0 +1,34 @@
+Download Loki Config (READ ME TO understand LOKI and check the loki.png)
+
+$ wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki/loki-local-config.yaml -O loki-config.yaml
+
+$ sudo apt-get install docker docker.io
+$ sudo chown $USER /var/run/docker.sock 
+
+$ docker ps 
+Run Loki Docker container
+$ docker run -d --name loki -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.8.0 --config.file=/mnt/config/loki-config.yaml
+
+ADD 3100 on security rules
+
+$ ip http://<ip>:3100/ready - loki
+
+Download Promtail Config
+$ wget https://raw.githubusercontent.com/grafana/loki/v2.8.0/clients/cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml
+
+Run Promtail Docker container
+$ docker run -d --name promtail -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.8.0 --config.file=/mnt/config/promtail-config.yaml
+
+Now login to Grafana and data source
+
+Prometheus and also loki (localhost)
+
+create a dashboard, select source type and aggregator
+
+other options are a pre-built dashboard 
+$ https://grafana.com/grafana/dashboards/14055-loki-stack-monitoring-promtail-loki/
+
+copy clipboard id
+go to Grafana and import and paste clipboard ID and it should automate dashboards that need to be edited based on source, type, aggregators
+
+
