@@ -22,4 +22,3 @@ e.g.
 node exporter - collects data from host system memory, cpu etc.  
 
 
-![ Architecture Diagram](https://medium.com/@aichali42471/monitoring-distributed-systems-with-grafana-and-prometheus-f8cd3ca674cc)
