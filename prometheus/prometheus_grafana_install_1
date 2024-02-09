@@ -1,0 +1,41 @@
+prometheus install
+# 1. Add the Prometheus repository to your system
+sudo apt-get update && sudo apt-get install -y curl gnupg2 apt-transport-https
+curl -sSL https://packages.grafana.com/gpg.key | sudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+
+# 2. Update your repository index and install Prometheus
+sudo apt-get update && sudo apt-get install -y prometheus
+
+grafana
+# 1. Add the Grafana repository to your system
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+
+# 2. Import the GPG key used to sign Grafana packages
+curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+
+# 3. Update your repository index and install Grafana
+sudo apt-get update && sudo apt-get install -y grafana
+
+enabel
+# Start Prometheus
+sudo systemctl start prometheus
+
+# Enable Prometheus to start on boot
+sudo systemctl enable prometheus
+
+# Start Grafana
+sudo systemctl start grafana-server
+
+# Enable Grafana to start on boot
+sudo systemctl enable grafana-server
+
+
+After completing these steps, 
+Prometheus should be running on your system, and Grafana should be accessible via your web browser at http://localhost:3000. 
+You can then configure Grafana to visualize data collected by Prometheus.
+
+
+http://3.145.131.230:9090/metrics(prometheus)
+go_memstats_gc_cpu_fraction - execute and display graphs 

@@ -1,0 +1,34 @@
+Obeservability
+   logging
+   monitoring
+   alerting
+
+Grafana visualization
+Loki (logs aggregate)
+prometheus -(data source) - you can check target hosts down and up. scrape_configs: (which retrieves)
+
+job_name :"docker" -   it will come in prometheus - targets:
+                                                   - cadvisor:8080
+time series - metrics
+
+promtail scrapper from different source - nginx log, httpd logs -> dump data to prom tail -> grafana
+
+
+ prometheus (time series db - organized by time. eg. financial market data, server logs.) -  docker logs ->  default 15secs retrieval pull based mechanism  -> insert in DB -> prom ql(http server - call query server) to query db. 
+
+
+ docker logs -  1) prometheus  2) Cadvisor 3) redis
+cadvisor store data to resdis.
+
+
+
+grafan template docker continaer and host metrics
+
+prometh.yml (multiple endpoints in prometheus)
+
+- job_name: "node exporter"
+node exporter 
+
+---
+
+
