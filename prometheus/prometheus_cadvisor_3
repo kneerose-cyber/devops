@@ -4,19 +4,20 @@ cAdvisor (short for container Advisor) analyzes and exposes resource usage and
 performance data from running containers. cAdvisor exposes Prometheus metrics out
 of the box.
 
-Acadivosr directly queries docker api to give information and get store on cache(db) redis db (key value vair)
+Acadivosr directly queries docker API to give information and get stored on cache(DB) redis db (key value pair)
 
-Download the prometheus config file
+Download the Prometheus config file
 
-wget https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus.yml
+$ wget https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus.yml
 
 Install Prometheus using Docker
-dockor run -d-name-prometheus -p 9090:9090 -v
-<PATH_TO_prometheus.yml_FILE>:/etc/prometheus/prometheus.yml
-prom/prometheus --config.file-/etc/prometheus/prometheus.yml
+$ dockor run -d-name-prometheus -p 9090:9090 -v
+  <PATH_TO_prometheus.yml_FILE>:/etc/prometheus/prometheus.yml
+  prom/prometheus --config.file-/etc/prometheus/prometheus.yml
 
 
 Add cAdvisor target
+1) vi cadvisor.yaml save below
 
 scrape_configs:
 - job_name: cadvisor
@@ -24,9 +25,10 @@ scrape_configs:
   static_configs:
   - targets:
     - cadvisor:8080
-
+---------------
 
 #Using Docker Compose
+2) vu compose.yml save below
 
 version: 3.2"
 services:
@@ -59,37 +61,25 @@ services:
    ports:
    - 6379:6379
 
-
+-------------------
 # Verity
 
-
-docker-compose up -d
-docker-compose ps 
+$ docker-compose up -d
+$ docker-compose ps 
 
 Test Promo QL
-rate(container_cpu_usage_seconds_total{name="redis"}[1m])
-container_memory_usage_bytes{name="redis"}
+$ rate(container_cpu_usage_seconds_total{name="redis"}[1m])
+$ container_memory_usage_bytes{name="redis"}
 
 
-note - docker you don't need to create new network, since it's on one yaml file. 
-3 containers should be created. 
-
+NOTE  - docker you don't need to create a new network, since it's on one YAML file. 
+      - 3 containers should be created. 
+      - docker container to query another using you can use another container hostname.
+      - if you run any other docker container cadvisor tells Prometheus and you can also check the data in cadvisor GUI and load the metrics in Grafana.
+      - Loki and Prometheus DATA source for grafana 
+      - node exporter -  install node exporter in a machine, it exposes a wide variety of hardware and kernel metrics RAM cpu 
 
 cadvisor 
-open port 8080
-http://ip:8080 - cadvisor
-
-
-
-docker container to query another using you can use other container hostname.
-
-if you run any other docker continaer cadvisor tells prometheus and you can also check thr data in cadvisor gui and load the metrics in grafafaa.
-
-
-loki an dpromethus daa source for grafana 
-
-node exporter
-         - install node exporter in a machine, it expose wide vaiety of hardware and kernel metrics ram cpu 
-
-it might help on oX and ping
+  open port 8080
+$ http://ip:8080 - cadvisor
 
