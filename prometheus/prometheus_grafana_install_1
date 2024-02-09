@@ -33,9 +33,10 @@ sudo systemctl enable grafana-server
 
 
 After completing these steps, 
-Prometheus should be running on your system, and Grafana should be accessible via your web browser at http://localhost:3000. 
+Prometheus should be running on your system, and Grafana should be accessible via your web browser at
+http://localhost:3000. 
+
 You can then configure Grafana to visualize data collected by Prometheus.
 
-
-http://3.145.131.230:9090/metrics(prometheus)
+http://<IP>:9090/metrics(prometheus)
 go_memstats_gc_cpu_fraction - execute and display graphs 
