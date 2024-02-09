@@ -1,15 +1,11 @@
-Obeservability
-   logging
-   monitoring
-   alerting
+Prometheus/Grafana -  Obeservability -> logging, monitoring, alerting (time series metrics - measurement take over periods of time, at regular intervals 15 sec default)
 
-Grafana visualization
-Loki (logs aggregate)
-prometheus -(data source) - you can check target hosts down and up. scrape_configs: (which retrieves)
 
-job_name :"docker" -   it will come in prometheus - targets:
-                                                   - cadvisor:8080
-time series - metrics
+Grafana is a visualization dashboard. 
+Loki (logs aggregate) - collects logs from source 
+Prometheus -(data source) - you can check target hosts down and up. scrape_configs: (which retrieves)
+  e,g,      job_name :"docker" -   it will come in Prometheus.yml as - targets:
+                                                                      - cadvisor:8080
 
 promtail scrapper from different source - nginx log, httpd logs -> dump data to prom tail -> grafana
 
