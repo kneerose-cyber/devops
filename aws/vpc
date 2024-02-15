@@ -1,0 +1,30 @@
+VPC - create VPC - vpc only.  (CIDR) - IP address allocation, improves routing efficency. -> tendancy deafult - cheao
+
+REgion  - vpc - small network (private subnet) and piblic subnet for internet access. 
+  public subnet (haproxy)-> private (DB) - via subnet 
+  user -> internet gateway(communication bettween vpc and internet) -> route tables  -> public subnet((decide where to send traffic) web server, elastic ip) ->  NAT gateway(one ip and outbound to intenet but no internet access to private subnets, elastic ip address is static ) -> private gateway (db server)
+
+subnets - create subnet under vpc , dont overlap subnet block 
+
+pair 2 vpc - peering connections - 
+
+1) you can create VPCs using the AWS Management Console, AWS CLI, or AWS SDKs. Make sure the CIDR blocks of the VPCs do not overlap.
+2) Modify Route Tables: For each VPC, modify the route tables to include routes to the CIDR block of the other VPC via the VPC peering connection. This allows traffic to flow between the VPCs.\]
+3) Create a VPC peering connection between the two VPCs. You can do this using the AWS Management Console, AWS CLI, or AWS SDKs. Specify the VPC IDs of the VPCs you want to peer and request the peering connection.
+4) After you've requested the peering connection, the owner of the other VPC needs to accept the peering connection request. Once accepted, the VPCs are peered, and instances in one VPC can communicate with instances in the other VPC using private IP addresses.
+5)  If necessary, update the security groups and network ACLs to allow traffic between the instances in the peered VPCs. By default, all traffic within a VPC is allowed, but you may need to adjust security group and network ACL settings depending on your requirements.
+
+# Create VPC peering connection
+aws ec2 create-vpc-peering-connection --vpc-id vpc-1a2b3c4d --peer-vpc-id vpc-5e6f7g8h --peer-owner-id 123456789012
+
+# Accept VPC peering connection
+aws ec2 accept-vpc-peering-connection --vpc-peering-connection-id pcx-1234567890abcd123
+
+# Modify route tables
+aws ec2 create-route --route-table-id rtb-1a2b3c4d --destination-cidr-block peer-vpc-cidr-block --vpc-peering-connection-id pcx-1234567890abcd123
+
+
+
+ route table is a set of rules, called routes, that determine where network traffic from resources within a Virtual Private Cloud (VPC) is directed. Each VPC has one or more associated route tables, and each subnet within the VPC must be associated with a route table.
+
+

@@ -1,0 +1,159 @@
+dynamo db create table. - partiton key - 
+   Insert data in dynamo DB using lamda - 
+   lamda you need to write function -  node.js python other langues too. 
+   lamda handler, deploy using json.dumps.  do test. and make it event - hoe to run function, using events (trigger), click test and make event.
+   event json save
+   insert event do test. 
+
+   python librabies to connect to dynamo DB (import boto 3) 
+   create item in dyanamo db
+   using this in script as key (table.get_item(key={learner_id}))
+
+   trust policy the role (for lambda and dynamo db) - screen shot in desktops
+   list tables in aws gui. 
+
+
+NEED TO practice LAMDA functions.
+IAM access to lamdda and dynamodb and dynamodblambda. 
+
+import json, boto3
+
+def lambda_handler(event, context):
+    print(event["message"])
+    # Initialize dynamodb client
+    client = boto3.resource('dynamodb', region_name='us-east-1')
+    table = client.Table('dynamo-db')
+    
+    items_to_insert = {
+         'prim': 'Sam',
+         'name': "niraj",
+         'address': "maryland"
+    }
+    
+    try: 
+      response = table.put_item(Item=items_to_insert)
+      
+      return {
+      'statusCode': 200,
+      'body': json.dumps('items inserted succesffuly')
+      }
+    except Exception as e:
+      return {
+      'statusCode': 500,
+      'body': json.dumps(str(e))
+      }
+
+deploy and create an event run the event
+
+
+def lambda_handler(event, context):
+    # Initialize DynamoDB client
+    dynamodb = boto3.client('dynamodb', region_name='us-east-1')
+
+    # Example: Read item from DynamoDB table
+    
+    response = dynamodb.put_item(
+    TableName='dynamo-db',
+    Item={
+        'prim': {'S': 'Saadia'}
+    }
+)
+
+
+    # Return response (if applicable)
+    return {
+        'statusCode': 200,
+        'body': 'Function executed successfully'
+    }
+
+
+
+Create a dynamo db table and a primary key
+
+To create a Lambda function to connect to DynamoDB, you can follow these general steps using Python as the programming language:
+
+Set Up Permissions: Ensure that your Lambda function has appropriate permissions to access DynamoDB. This is typically done by attaching an IAM role to the Lambda function with the necessary permissions to read from and write to DynamoDB tables.
+
+Write Lambda Function Code: Write the Python code for your Lambda function. This code will include the logic to connect to DynamoDB, perform operations such as reading or writing data, and any other processing you want the function to perform.
+
+Test Locally (Optional): Test your Lambda function locally to ensure it works as expected before deploying it to AWS Lambda. You can use tools like the AWS SAM CLI or local DynamoDB instances for testing.
+
+Deploy to AWS Lambda: Deploy your Lambda function to AWS Lambda using either the AWS Management Console, AWS CLI, or a deployment tool like AWS SAM. Ensure that you configure the function with the appropriate runtime (Python), handler function, and any environment variables or other settings required.
+
+Here's a simple example of a Python Lambda function that connects to DynamoDB:
+
+
+
+Replace 'YourTableName', 'PrimaryKeyName', and 'PrimaryKeyValue' with your actual DynamoDB table name, primary key name, and primary key value, respectively. Additionally, replace the commented lines with the actual DynamoDB operations you want to perform.
+
+Make sure to also configure the appropriate IAM permissions for your Lambda function to access DynamoDB.
+
+
+
+he lambda_handler function in AWS Lambda serves as the entry point for the Lambda function's execution. When you invoke a Lambda function, AWS Lambda will call this function and pass it two parameters: event and context.
+
+Here's a breakdown of these parameters:
+
+event: This parameter contains the input data that triggers the Lambda function. The structure and content of the event object depend on the event source that invokes the Lambda function. For example, if the Lambda function is triggered by an HTTP request through API Gateway, the event object might contain information about the HTTP request, such as headers, query parameters, and request body.
+
+context: This parameter provides runtime information about the Lambda function invocation, such as the AWS request ID, function name, memory limit, and execution deadline. It also provides methods for accessing information about the AWS resources, such as the AWS Region and account ID.
+
+The lambda_handler function typically performs the following tasks:
+
+Receives the event and context parameters.
+Processes the input data contained in the event parameter.
+Performs the main logic or business operations of the Lambda function.
+Optionally, interacts with other AWS services or external resources.
+Generates a response or returns a result.
+Handles any errors that occur during execution and provides appropriate error handling or error messages.
+In summary, the lambda_handler function is the central piece of code in an AWS Lambda function, responsible for handling input events, executing the function's logic, and producing output or results.
+
+ practice few for lamda functions
+
+
+First, you'll need to create an IAM role with permissions to access S3 and execute Lambda functions. Then, create an S3 bucket and configure an event trigger to invoke the Lambda function when new objects are uploaded.
+
+import os
+import boto3
+from PIL import Image
+from io import BytesIO
+
+s3 = boto3.client('s3')
+
+def lambda_handler(event, context):
+    # Get the uploaded object information
+    bucket = event['Records'][0]['s3']['bucket']['name']
+    key = event['Records'][0]['s3']['object']['key']
+    
+    # Download the image from S3
+    response = s3.get_object(Bucket=bucket, Key=key)
+    image_content = response['Body'].read()
+    
+    # Process the image (e.g., resize to generate thumbnail)
+    thumbnail = resize_image(image_content, 100, 100)
+    
+    # Upload the thumbnail back to S3
+    thumbnail_key = os.path.splitext(key)[0] + '_thumbnail.jpg'
+    s3.put_object(Bucket=bucket, Key=thumbnail_key, Body=thumbnail)
+    
+    return {
+        'statusCode': 200,
+        'body': 'Thumbnail generated successfully'
+    }
+
+def resize_image(image_content, width, height):
+    image = Image.open(BytesIO(image_content))
+    image.thumbnail((width, height))
+    buffer = BytesIO()
+    image.save(buffer, format='JPEG')
+    return buffer.getvalue()
+
+
+
+IMPORTANT -  user uploads image on s3 buckets ,  bucket will notify lamda new image is uploaded, pass along with the key, lambda will use the key and fetch orginial image and process and resize to new bucket. 
+ object key
+   S3 event trigger to invoke the Lambda function when new objects are uploaded to your bucket. When an image is uploaded, the Lambda function will download it from S3, resize it to a thumbnail size (100x100 pixels in this example), and then upload the thumbnail back to S3 with a modified key.
+
+create trigger -> add trigger -> s3 -> POST EVENTS ->
+  you can also do from s3 to trigger lamda 
+  template even json, s3 which you can print as well print(event) which is passed on lamda function.  we are using even object s3 to get bucket name and key. 
