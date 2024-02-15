@@ -9,13 +9,15 @@ dynamo db create table. - partiton key -
    create item in dyanamo db
    using this in script as key (table.get_item(key={learner_id}))
 
-   trust policy the role (for lambda and dynamo db) - screen shot in desktops
-   list tables in aws gui. 
 
-
-NEED TO practice LAMDA functions.
 IAM access to lamdda and dynamodb and dynamodblambda. 
-
+Create a dynamo db table and a primary key
+To create a Lambda function to connect to DynamoDB, you can follow these general steps using Python as the programming language:
+Set Up Permissions: Ensure that your Lambda function has appropriate permissions to access DynamoDB. This is typically done by attaching an IAM role to the Lambda function with the necessary permissions to read from and write to DynamoDB tables.
+Write Lambda Function Code: Write the Python code for your Lambda function. This code will include the logic to connect to DynamoDB, perform operations such as reading or writing data, and any other processing you want the function to perform.
+Test Locally (Optional): Test your Lambda function locally to ensure it works as expected before deploying it to AWS Lambda. You can use tools like the AWS SAM CLI or local DynamoDB instances for testing.
+Deploy to AWS Lambda: Deploy your Lambda function to AWS Lambda using either the AWS Management Console, AWS CLI, or a deployment tool like AWS SAM. Ensure that you configure the function with the appropriate runtime (Python), handler function, and any environment variables or other settings required.
+Here's a simple example of a Python Lambda function that connects to DynamoDB:
 import json, boto3
 
 def lambda_handler(event, context):
@@ -67,37 +69,12 @@ def lambda_handler(event, context):
     }
 
 
-
-Create a dynamo db table and a primary key
-
-To create a Lambda function to connect to DynamoDB, you can follow these general steps using Python as the programming language:
-
-Set Up Permissions: Ensure that your Lambda function has appropriate permissions to access DynamoDB. This is typically done by attaching an IAM role to the Lambda function with the necessary permissions to read from and write to DynamoDB tables.
-
-Write Lambda Function Code: Write the Python code for your Lambda function. This code will include the logic to connect to DynamoDB, perform operations such as reading or writing data, and any other processing you want the function to perform.
-
-Test Locally (Optional): Test your Lambda function locally to ensure it works as expected before deploying it to AWS Lambda. You can use tools like the AWS SAM CLI or local DynamoDB instances for testing.
-
-Deploy to AWS Lambda: Deploy your Lambda function to AWS Lambda using either the AWS Management Console, AWS CLI, or a deployment tool like AWS SAM. Ensure that you configure the function with the appropriate runtime (Python), handler function, and any environment variables or other settings required.
-
-Here's a simple example of a Python Lambda function that connects to DynamoDB:
-
-
-
 Replace 'YourTableName', 'PrimaryKeyName', and 'PrimaryKeyValue' with your actual DynamoDB table name, primary key name, and primary key value, respectively. Additionally, replace the commented lines with the actual DynamoDB operations you want to perform.
-
-Make sure to also configure the appropriate IAM permissions for your Lambda function to access DynamoDB.
-
-
-
-he lambda_handler function in AWS Lambda serves as the entry point for the Lambda function's execution. When you invoke a Lambda function, AWS Lambda will call this function and pass it two parameters: event and context.
+Make sure to also configure the appropriate IAM permissions for your Lambda function to access DynamoDB.e lambda_handler function in AWS Lambda serves as the entry point for the Lambda function's execution. When you invoke a Lambda function, AWS Lambda will call this function and pass it two parameters: event and context.
 
 Here's a breakdown of these parameters:
-
 event: This parameter contains the input data that triggers the Lambda function. The structure and content of the event object depend on the event source that invokes the Lambda function. For example, if the Lambda function is triggered by an HTTP request through API Gateway, the event object might contain information about the HTTP request, such as headers, query parameters, and request body.
-
 context: This parameter provides runtime information about the Lambda function invocation, such as the AWS request ID, function name, memory limit, and execution deadline. It also provides methods for accessing information about the AWS resources, such as the AWS Region and account ID.
-
 The lambda_handler function typically performs the following tasks:
 
 Receives the event and context parameters.
