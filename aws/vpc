@@ -1,11 +1,12 @@
-VPC - create VPC - vpc only.  (CIDR) - IP address allocation, improves routing efficency. -> tendancy deafult - cheao
+VPC - create VPC - vpc only.  (CIDR) - IP address allocation, improves routing efficiency. -> tendency default - cheap
 
-REgion  - vpc - small network (private subnet) and piblic subnet for internet access. 
+Region  - vpc - small network (private subnet) and public subnet for internet access. 
   public subnet (haproxy)-> private (DB) - via subnet 
-  user -> internet gateway(communication bettween vpc and internet) -> route tables  -> public subnet((decide where to send traffic) web server, elastic ip) ->  NAT gateway(one ip and outbound to intenet but no internet access to private subnets, elastic ip address is static ) -> private gateway (db server)
+  
+IMPORTANT - THE FLOW  
+    user -> internet gateway(communication between vpc and internet) -> route tables  -> public subnet((decide where to send traffic) web server, elastic ip) ->  NAT gateway(one ip and outbound to intenet but no internet access to private subnets, elastic ip address is static ) -> private gateway (db server)
 
-subnets - create subnet under vpc , dont overlap subnet block 
-
+subnets - create subnet under vpc , don't overlap subnet block 
 pair 2 vpc - peering connections - 
 
 1) you can create VPCs using the AWS Management Console, AWS CLI, or AWS SDKs. Make sure the CIDR blocks of the VPCs do not overlap.
@@ -22,7 +23,6 @@ aws ec2 accept-vpc-peering-connection --vpc-peering-connection-id pcx-1234567890
 
 # Modify route tables
 aws ec2 create-route --route-table-id rtb-1a2b3c4d --destination-cidr-block peer-vpc-cidr-block --vpc-peering-connection-id pcx-1234567890abcd123
-
 
 
  route table is a set of rules, called routes, that determine where network traffic from resources within a Virtual Private Cloud (VPC) is directed. Each VPC has one or more associated route tables, and each subnet within the VPC must be associated with a route table.
