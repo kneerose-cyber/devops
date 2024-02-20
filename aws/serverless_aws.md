@@ -24,29 +24,28 @@ With CloudFormation, you can create and manage a collection of AWS resources con
  ```
  1) create an ec2 instance on was (starting point to control the project)
  2) go to serverless.com (sign-up, will be required when using ec2 serverless to run on the serverless site.)
- click on setup and install serverless using npm install on created ec2 instances. 
- install node js, npm, and do serverless, might need to install nvm(fix node js version)
- npm install -g serveless
-
-practice/example - website, look for examples and tutorials 
-now  setup cmd $serverless
+ 3) click on setup and install serverless using npm install on created ec2 instances. 
+    install node js, npm, and do serverless, might need to install nvm(fix node js version)
+     npm install -g serveless
+ 4) now  setup cmd $serverless
                 AWS - Python - HTTP API 
                 framework - yes
                 deploy - NO.
 
-open the folder and check README.md, handler.py, serveless.yml  (events httpAPI) path: /hello   trigger website /hello trigger lambda function
-serverless deployment ( it will fail, need to create IAM user -testing administrative access) create access key and now setup aws CLI setup - then $aws configure
-now you can deploy serverless deploy 
-go to serveless.com  go-to provider and aws provider (access/secret key)
+5) open the folder and check README.md, handler.py, serveless.yml  (events httpAPI) path: /hello   trigger website /hello trigger lambda function
+6) serverless deployment ( it will fail, need to create IAM user -testing administrative access) create access key and now setup aws CLI setup - then $aws configure
+7) now you can deploy serverless deploy 
+8) go to serveless.com  go-to provider and aws provider (access/secret key)
+9) now serverless deploy 
+10) you should get endpoint https://*/hello (It sud return what lambda function had)
+11) sls deploy cmd
+12) serverless remove (to delete everything) ```
 
-now serverless deploy 
-you should get endpoint https://*/hello (It sud return what lambda function had)
-play with yaml, create 2 lambda functions, and do serverless deploy
-sls deploy cmd ()
+**play with yaml**, create 2 lambda functions, and do serverless deploy)
+**practice/example **- website, look for examples and tutorials 
 
-project to practice  creating Dynamo db, insert, delete, and update. 
-login to and check cloud formation - stacks - view in designer (it will show an architecture diagram)
-serverless remove```
+**project to practice**  creating Dynamo db, insert, delete, and update. 
+**login to and check** cloud formation - stacks - view in designer (it will show an architecture diagram)
 
 
 
