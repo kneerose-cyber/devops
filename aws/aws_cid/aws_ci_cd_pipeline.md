@@ -51,7 +51,7 @@ $ git add index.html
    files:
      - '**/*'
 ```
-** commit the builspec.yml**( it will take it default) file and push to dev branch \
+**commit the builspec.yml**( it will take it default) file and push to dev branch \
  3) now save the build project and click build, it should fail for the builspecs.yml file\
  4) check phase details\
  5) code commit to create a pull request to merge from dev to master the builspec.yml file.\
@@ -68,35 +68,34 @@ $ git add index.html
 
 
 
-**note** - code commit <connection need a service role> code build
+**note** - code commit {connection need service role} code build 
 
 
+**IMP** -\
+ 1)create a role add below services\
+   AmazonEC2FullAccess	AWS managed	1\
+   AmazonEC2RoleforAWSCodeDeploy	AWS managed	1\
+   AmazonEC2RoleforAWSCodeDeployLimited	AWS managed	1\
+   AmazonS3FullAccess	AWS managed	2\
+   AWSCodeDeployFullAccess	AWS managed	1\
+   AWSCodeDeployRole	AWS managed	1\
+   AWSCodeDeployRoleForECS	AWS managed\
 
-**IMP** -
- 1)create a role add below services
-   AmazonEC2FullAccess	AWS managed	1
-   AmazonEC2RoleforAWSCodeDeploy	AWS managed	1
-   AmazonEC2RoleforAWSCodeDeployLimited	AWS managed	1
-   AmazonS3FullAccess	AWS managed	2
-   AWSCodeDeployFullAccess	AWS managed	1
-   AWSCodeDeployRole	AWS managed	1
-   AWSCodeDeployRoleForECS	AWS managed
-
- 2) attach this role on service role on create deployment group(1) arn:aws:iam::592701661094:role/aws_code_deploy  
-3) create ec2 instance and click on aamazon ec2 instance.  value add the ec2 hostname
-  install aws code agent
-  select -> never
-  enable LB
-   create deployment
+ 2) attach this role on service role on create deployment group(1) arn:aws:iam::592701661094:role/aws_code_deploy  \
+ 3) create ec2 instance and click on amazon ec2 instance.  value add the ec2 hostname\
+  Install AWS code agent \
+  select -> never \
+  enable LB \
+   create deployment\
 ```
 
-a) why not install the aws code agent - the agent will install docker etc on ec2 instances, code deploy agent - needs to be in the ec2 instance. 
-aws code deploy is not upgraded as it is ec2 so it's better to use ec2 and install the agent instead than going separately code deploy. 
-b) code deploy version and ec2 code deploy agent version lot of mismatches
-c) solution - shell scripy 
-    In order to deploy your app to EC2, CodeDeploy needs an agent which actually deploys the code on your EC2.
+a) why not install the AWS code agent - the agent will install docker etc on ec2 instances, code deploy agent - needs to be in the ec2 instance. \
+aws code deploy is not upgraded as it is ec2 so it's better to use ec2 and install the agent instead than going separately code deploy. \
+b) code deploy version and ec2 code deploy agent version lot of mismatches\
+c) solution - shell script \
+    In order to deploy your app to EC2, CodeDeploy needs an agent that deploys the code on your EC2.\
 
-      Create a shell script with the below contents and run it (install agent)
+      Create a shell script with the below contents and run it (install agent)\
 
 **make sure to edit east-1 or east 2 on the below script, depend your location **
     #!/bin/bash 
@@ -132,6 +131,7 @@ the agent will run below/
             runas: root 
 
 **scripts folder**
+
 create below .sh files 
 install_nginx.sh
   #!bin/bash
