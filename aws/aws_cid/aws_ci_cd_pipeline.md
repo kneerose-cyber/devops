@@ -33,23 +33,23 @@ $ git add index.html
  2)   buildspec.yml - IMP (stage and phases and config, write here to install etc.)
      version: 0.2
 
-phases:
-  install:
-  commands:
-    - echo Installing NGINX
-    - sudo apt-get update
-    - sudo apt-get install nginx -y
- build:
-  commands:
-    - echo Build started on `date`
-    - cp index.html /var/www/html/
- post_build:
-  commands:
-    - echo configuring nginx
+ phases:
+   install:
+   commands:
+     - echo Installing NGINX
+     - sudo apt-get update
+     - sudo apt-get install nginx -y
+  build:
+   commands:
+     - echo Build started on `date`
+     - cp index.html /var/www/html/
+  post_build:
+   commands:
+     - echo configuring nginx
 
-artifacts:
-  files:
-    - '**/*'
+ artifacts:
+   files:
+     - '**/*'
 ```
 ** commit the builspec.yml**( it will take it default) file and push to dev branch 
  3) now save the build project and click build, it should fail for the builspecs.yml file
