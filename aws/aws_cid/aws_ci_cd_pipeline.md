@@ -8,20 +8,21 @@ AWS dev ops CI/CD.
 
 
 **flow**
-code -> code commit -> code build -> artifact, s3 -> code dpeloy -> (ec2, lamda, ecs)
+code -> code commit -> code build -> artifact, s3 -> code dpeloy -> (ec2, lamda, ecs) \
 code pipeline(ci/cd) -> source -> build -> deploy 
 
 **practical**
- search -> code commit -> create repositories 
- IAM user, access console. httpd generates code commit.
+ search -> code commit -> create repositories \
+ IAM user, access console. httpd generates code commit. \
 
 
-```git clone  https://git-codecommit.us-east-2.amazonaws.com/v1/repos/demo-app```
-```index.html 
-<!DOCTYPE html>
-<h1>My Demo app this is nice</h1>```
+```git clone  https://git-codecommit.us-east-2.amazonaws.com/v1/repos/demo-app``` \
 
-```git add index.html 
+ **index.html** add below
+    <!DOCTYPE html>
+    <h1>My Demo app this is nice</h1>```
+
+```$ git add index.html 
 commit to the master branch, create a dev branch and commit, and in GUI create a pull request to 
 merge to the master branch etc. ```
 **approval** rule template - how many users need the approval to merge to the master
