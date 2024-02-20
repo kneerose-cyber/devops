@@ -86,6 +86,7 @@ artifacts:
   select -> never
   enable LB
    create deployment
+```
 
 a) why not install the aws code agent - the agent will install docker etc on ec2 instances, code deploy agent - needs to be in the ec2 instance. 
 aws code deploy is not upgraded as it is ec2 so it's better to use ec2 and install the agent instead than going separately code deploy. 
@@ -158,7 +159,7 @@ Image steps workflow.
 
 1) ec2 -> s3 
 2) ec2 -> code deploy
-```
+
   a) make one more role for ec2-code-deploy add -> ec2 full access, s3 full access, full code deploy
   b) give the ec2 instance, security, modify iam roles, choose ec2-code-deploy, and update iam role.  
   c) in ec2 instance -> service codedeploy-agent restart (becoz of above permissions)
