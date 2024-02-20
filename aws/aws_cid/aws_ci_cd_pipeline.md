@@ -33,7 +33,7 @@ $ git add index.html
  2)   buildspec.yml - IMP (stage and phases and config, write here to install etc.)
      version: 0.2
 
- phases:
+ phases:\
    install:
    commands:
      - echo Installing NGINX
