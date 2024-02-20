@@ -1,40 +1,36 @@
 AWS dev ops CI/CD.
 
-code 
+**code **
     code pipeline -> commit -> build -> deploy 
     IAM KMS(service key management files encrypt/decrypt - secrets)
     Artifact(codd build storage ) S3 
     Ec2 ECS LAMBDA
 
 
-flow
+**flow**
 code -> code commit -> code build -> artifact, s3 -> code dpeloy -> (ec2, lamda, ecs)
-code pipeline -> source -> build -> deploy 
+code pipeline(ci/cd) -> source -> build -> deploy 
 
-
-practical
+**practical**
  search -> code commit -> create repositories 
- IAM user , access console. httpd geenrate code commit.
+ IAM user, access console. httpd generates code commit.
 
 
-git clone  https://git-codecommit.us-east-2.amazonaws.com/v1/repos/demo-app
-
-index.html 
+```git clone  https://git-codecommit.us-east-2.amazonaws.com/v1/repos/demo-app```
+```index.html 
 <!DOCTYPE html>
-<h1>My Demo app this is nice</h1>
+<h1>My Demo app this is nice</h1>```
 
-git add index.html 
-commit to master branch, create dev branch and commit and in GUI create pull reques to 
-merge to master branch etc. 
-approval rule template - how many users need approval to merge to master. 
-
-
- create build project 
+```git add index.html 
+commit to the master branch, create a dev branch and commit, and in GUI create a pull request to 
+merge to the master branch etc. ```
+**approval** rule template - how many users need the approval to merge to the master
 
 
- buildspec.yml - IMP (stage and phases and config, write here to install etc.)
-version: 0.2
-
+ 1) ON AWS  create a build project 
+2)   buildspec.yml - IMP (stage and phases and config, write here to install etc.)
+     version: 0.2
+```
 phases:
  install:
   commands:
@@ -52,25 +48,22 @@ phases:
 artifacts:
   files:
     - '**/*'
+```
+** commit the builspec.yml**( it will take it default) file and push to dev branch 
+ 1) now save the build project and click build, it should fail for the builspecs.yml file
+ 2) check phase details
+ 3) code commit to create a pull request to merge from dev to master the builspec.yml file.
+ 4) now re-run the build and should pass, it will create a docker container. it will be a success
 
- commit the builspec.yml( it will take it default) file and push to dev branch 
- now save the build project and click build , it should fail for builspecs.yml file
- check phase details
-
-code commit create pulll request to merge from dev to master the builspec.yml file.
-
-now re run build and should pass, it will create docker container. 
-it will be success
-
-now create s3 bucket to store artificats
-  creat bucket and create folder .
-edit the project artifcats
-  s3 bucket (to store in a bucket ) - use the name of bucket and folder create above.
-   also path go to s3 bucket-> folder-> copy s3 uri and paste it on path on edit artifcats
-         save and run the build if failure check and fix permission on IAM user
+now create an s3 bucket to store artifacts
+  Create a bucket and create the folder.
+edit the project artifacts
+  s3 bucket (to store in a bucket ) - use the name of the bucket and folder created above.
+   also, path goe to s3 bucket-> folder-> copy the s3 URI and paste it on the path on edit artifacts
+         save and run the build if failure check and fix permission on the IAM user
 
 
- deploy server on app
+ deploy a server on the app
 deploy - create application ec2 -> create deployment group (1)
 App to deploy multiple servers or a server, you need a deployment group 
 
