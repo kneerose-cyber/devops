@@ -34,7 +34,7 @@ $ git add index.html
      version: 0.2
 
 phases:
- install:
+ \install:
   commands:
     - echo Installing NGINX
     - sudo apt-get update
