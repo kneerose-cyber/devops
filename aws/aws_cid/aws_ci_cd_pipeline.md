@@ -1,10 +1,10 @@
 AWS dev ops CI/CD.
 
 code 
-code pipeline -> commit -> build -> deploy 
-IAM KMS(service key management files encryt/decrypt - secrets)
-Artificat(codd build storage ) S3 
-Ec2 ECS LAMBDA
+    code pipeline -> commit -> build -> deploy 
+    IAM KMS(service key management files encrypt/decrypt - secrets)
+    Artifact(codd build storage ) S3 
+    Ec2 ECS LAMBDA
 
 
 flow
