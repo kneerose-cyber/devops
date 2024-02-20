@@ -33,7 +33,7 @@ $ git add index.html
  2)   buildspec.yml - IMP (stage and phases and config, write here to install etc.)
      version: 0.2
 
- phases:\
+ phases:
    install:
    commands:
      - echo Installing NGINX
@@ -51,20 +51,20 @@ $ git add index.html
    files:
      - '**/*'
 ```
-** commit the builspec.yml**( it will take it default) file and push to dev branch 
- 3) now save the build project and click build, it should fail for the builspecs.yml file
- 4) check phase details
- 5) code commit to create a pull request to merge from dev to master the builspec.yml file.
- 6) now re-run the build and should pass, it will create a docker container. it will be a success
- 7)now create an s3 bucket to store artifacts
-   Create a bucket and create the folder.
-   edit the project artifacts
-   s3 bucket (to store in a bucket ) - use the name of the bucket and folder created above.
-   also, path go to s3 bucket-> folder-> copy the s3 URI and paste it on the path on edit artifacts
-         save and run the build if failure check and fix permission on the IAM user
- 8)deploy a server on the app  
- 9) deploy - create application ec2 -> create deployment group (1)
-10) App to deploy multiple servers or a server, you need a deployment group ```
+** commit the builspec.yml**( it will take it default) file and push to dev branch \
+ 3) now save the build project and click build, it should fail for the builspecs.yml file\
+ 4) check phase details\
+ 5) code commit to create a pull request to merge from dev to master the builspec.yml file.\
+ 6) now re-run the build and should pass, it will create a docker container. it will be a success\
+ 7)now create an s3 bucket to store artifacts\
+   Create a bucket and create the folder.\
+   edit the project artifacts\
+   s3 bucket (to store in a bucket ) - use the name of the bucket and folder created above.\
+   also, path go to s3 bucket-> folder-> copy the s3 URI and paste it on the path on edit artifacts\
+         save and run the build if failure check and fix permission on the IAM user\
+ 8)deploy a server on the app  \
+ 9) deploy - create application ec2 -> create deployment group (1)\
+10) App to deploy multiple servers or a server, you need a deployment group \```
 
 
 
