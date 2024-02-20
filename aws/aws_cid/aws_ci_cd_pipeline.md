@@ -18,14 +18,14 @@ code pipeline(ci/cd) -> source -> build -> deploy
 
 ```git clone  https://git-codecommit.us-east-2.amazonaws.com/v1/repos/demo-app``` \
 
- **index.html** add below
+ **index.html** 2 line for html file. 
    ``` \
       <!DOCTYPE html> 
-    <h1>My Demo app this is nice</h1> \```
+    <h1>My Demo app this is nice</h1> \
 
 $ git add index.html 
-commit to the master branch, create a dev branch and commit, and in GUI create a pull request to 
-merge to the master branch etc. ```
+  commit to the master branch, create a dev branch and commit, and in GUI create a pull request to merge to the master branch etc. ```
+
 **approval** rule template - how many users need the approval to merge to the master
 
 
