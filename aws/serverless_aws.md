@@ -41,11 +41,9 @@ With CloudFormation, you can create and manage a collection of AWS resources con
 11) sls deploy cmd
 12) serverless remove (to delete everything) ```
 
+
 **play with yaml**, create 2 lambda functions, and do serverless deploy)
 **practice/example **- website, look for examples and tutorials 
 
 **project to practice**  creating Dynamo db, insert, delete, and update. 
 **login to and check** cloud formation - stacks - view in designer (it will show an architecture diagram)
-
-
-
