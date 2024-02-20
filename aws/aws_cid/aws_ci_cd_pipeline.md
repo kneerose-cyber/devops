@@ -1,17 +1,17 @@
 AWS dev ops CI/CD.
 
-**CODE**
+**CODE** \
     code pipeline -> commit -> build -> deploy \
     IAM KMS(service key management files encrypt/decrypt - secrets) \
     Artifact(codd build storage ) S3 \
     Ec2 ECS LAMBDA
 
 
-**flow**
+**flow** \
 code -> code commit -> code build -> artifact, s3 -> code dpeloy -> (ec2, lamda, ecs) \
 code pipeline(ci/cd) -> source -> build -> deploy 
 
-**practical**
+**practical** \
  search -> code commit -> create repositories \
  IAM user, access console. httpd generates code commit. \
 
