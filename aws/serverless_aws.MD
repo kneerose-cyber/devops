@@ -7,6 +7,9 @@ serverless framework
 serverless.com 
 serverless uses Cloudformation as infra as code. 
 
+{code}
+sdsds
+{code}
 CloudFormation is tightly integrated with AWS and provides native support for AWS services, while Terraform offers multi-cloud support and a flexible, extensible language for defining infrastructure. 
 The choice between them often depends on factors such as the specific cloud environment, existing skill sets, and project requirements.
 Cloudformation - serverless uses cloud formation, including YAML and AWS libraries. 
