@@ -18,8 +18,9 @@ code pipeline(ci/cd) -> source -> build -> deploy
 
 ```git clone  https://git-codecommit.us-east-2.amazonaws.com/v1/repos/demo-app``` \
 
- **index.html** add below\
-   ``` <!DOCTYPE html> \
+ **index.html** add below
+   ``` \
+      <!DOCTYPE html> 
     <h1>My Demo app this is nice</h1> \```
 
 $ git add index.html 
@@ -31,7 +32,7 @@ merge to the master branch etc. ```
  1) ON AWS  create a build project 
  2)   buildspec.yml - IMP (stage and phases and config, write here to install etc.)
      version: 0.2
-```
+
 phases:
  install:
   commands:
