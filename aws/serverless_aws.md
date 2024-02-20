@@ -21,7 +21,8 @@ With CloudFormation, you can create and manage a collection of AWS resources con
           lambda -> logs to cloudwatch 
 
 **steps** 
- ```1) create an ec2 instance on was (starting point to control the project)
+ ```
+ 1) create an ec2 instance on was (starting point to control the project)
  2) go to serverless.com (sign-up, will be required when using ec2 serverless to run on the serverless site.)
  click on setup and install serverless using npm install on created ec2 instances. 
  install node js, npm, and do serverless, might need to install nvm(fix node js version)
