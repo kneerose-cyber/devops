@@ -173,4 +173,4 @@ Image steps workflow.
     select AWS codepipeline (any change on code commit repo and deploy in pipeline-polling)\
     build stage -> build provde (aws code build) project name -> create earlier.  \
     deploy -> codeDeploy -> demo-app  \
-    pipeline should be created and make sure no issues.\
+    pipeline should be created and make sure no issues.
