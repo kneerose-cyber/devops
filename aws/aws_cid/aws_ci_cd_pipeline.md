@@ -79,14 +79,14 @@ $ git add index.html
    AmazonS3FullAccess	AWS managed	2\
    AWSCodeDeployFullAccess	AWS managed	1\
    AWSCodeDeployRole	AWS managed	1\
-   AWSCodeDeployRoleForECS	AWS managed\
+   AWSCodeDeployRoleForECS	AWS managed
 
  2) attach this role on service role on create deployment group(1) arn:aws:iam::592701661094:role/aws_code_deploy  \
  3) create ec2 instance and click on amazon ec2 instance.  value add the ec2 hostname\
   Install AWS code agent \
   select -> never \
   enable LB \
-   create deployment\
+   create deployment\\
 ```
 
 a) why not install the AWS code agent - the agent will install docker etc on ec2 instances, code deploy agent - needs to be in the ec2 instance. \
@@ -168,9 +168,9 @@ Image steps workflow.
   d) check status now deployment status should succeed.  app will be deployed. 
   e) check URL on website index.html using ip address.
 ```
-create pipeline
-    source -> source provider(aws codecommit) -> repo name (demo-app) -> branch (master)
-    select AWS codepipeline (any change on code commit repo and deploy in pipeline-polling)
-    build stage -> build provde (aws code build) project name -> create earlier. 
-    deploy -> codeDeploy -> demo-app 
-    pipeline should be created and make sure no issues.
+**create pipeline** \
+    source -> source provider(aws codecommit) -> repo name (demo-app) -> branch (master) \
+    select AWS codepipeline (any change on code commit repo and deploy in pipeline-polling)\
+    build stage -> build provde (aws code build) project name -> create earlier.  \
+    deploy -> codeDeploy -> demo-app  \
+    pipeline should be created and make sure no issues.\
