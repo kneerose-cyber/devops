@@ -1,15 +1,16 @@
-IAAS - infra as a service - hypversior(cloud)
-PAAS - platform as service - docker -> ecs (platform to run application) - Amazon 
-SAAS  softwate as service - insta, gmail.
-Scalable, Elasticity.
-Template -Launch instance from template, many templates.
-Autoscaling group -> launch template -> attach LB (NLB or ALB) -> max running ec2(scaling).
-AWS WAF (web application firewall ) -> Web ACLS ruless -> LB 
-s3 bucket - objects(files, mp3, jpg, images ) - s3 is service, you can make bucket store files and retrieve. shared bucket. 
-s3 bucket - json code using policy and index.html/ , access through url. - bucket policy. 
-IAM - identitfy access management, access grants, user, roles , policicies. 
-AWS CLI - access key and secret - view bucket, create eks, controll by IAM but access on almost many things to run container, terraform etc.
-RDS- (relational database service) 
-Dyanamo DB -  templates - create DB and create ec2 isntance. 
-ec2 -  instance as client and connect to mysql DB  (ON db aws select ec2 instance for connections - it will create virtual private cloud. )
-No sql - not only sql - dynamo DB - even proper schema not here it will work, it just need proper key. 
+IAAS -  infra as a service - hypversior(cloud)
+PAAS -  platform as service - docker -> ECS (platform to run application) - Amazon 
+SAAS  -  software as service - Instagram, Gmail.
+Scalable  - Scalability refers to the ability of a system to handle an increasing amount of work by adding resources to accommodate growth. 
+Elasticity - Elasticity refers to the ability of a system to adapt its capacity to handle varying workloads automatically.
+Template - Launch instance from template, many templates.
+Autoscaling group -  launch template -> attach LB (NLB or ALB) -> max running ec2(scaling).
+AWS WAF (web application firewall ) - Web ACLS rules -> LB 
+s3 bucket - objects(files, mp3, jpg, images ) - s3 is a service, you can make a bucket to store files and retrieve them. shared bucket. 
+s3 bucket - JSON code using policy and index.html/, access through URL. - bucket policy. 
+IAM -  identity access management, access grants, users, roles, and policies. 
+AWS CLI -  access key and secret - view bucket, create eks, controlled by IAM but access on almost many things to run the container, terraform etc.
+RDS - (relational database service) 
+Dynamo DB -  templates - create DB and create ec2 instance. 
+ec2 -  instance as a client and connect to mysql DB  (ON db aws select ec2 instance for connections - it will create a virtual private cloud. )
+No SQL - not only SQL - dynamo DB - even proper schema not here it will work, it just needs proper key. 

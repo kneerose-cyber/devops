@@ -1,32 +1,25 @@
-ECR, fargate 
+e. g . Deploy NODE JS APP
 
-SNS topic - simple notifications ervice - one topic to send email, one to send sms, 
+FLOW 
+  git -> ec2 <- IAM <- ECR 
+  ec2 -> docker image -> ECR -> ECS pull and run -> cloud watch.
 
+ECR - container images accessed by aws user and services
+ECR is commonly used to store Docker container images for applications and services that are deployed using ECS, Kubernetes, or other container orchestration platforms.
 
+1) AWS configure CLI -> add permission ECR -> login using aws ecr
 
-deploy NODE JS APP
-
-git -> ec2 <- IAM <- ECR 
-ec2 -> docker image -> ECR -> ECS pull and run -> cloud watch.
-
-ECR - container images access by aws user and services
- 
- ECR is commonly used to store Docker container images for applications and services that are deployed using ECS, Kubernetes, or other container orchestration platforms.
-
- AWS configre cli -> add permiison ECR -> login using aws ecr
-
-
-
-ECS -> aws fargate (server less) , cloud watch.  -> task -> run new task  -> task definitions create new task definitions -> task size (cpu, memeory) more cpu and memeory it could be scalabale -> ecstaskexecutaion role-> container -> image uri from ecr and port mapping -> maximum conditional for cpu and memeory for scalable. 
-
-    task definition is ready now -> task definition select-> deploy -> run task (running in ecs cluster - <whatevername_we_gave>
+2) ECS -> aws fargate (serverless), cloud watch.  -> task -> run new task  -> task definitions create new task definitions -> task size (cpu, memory) more cpu and memory it could be scalable -> ecs task execution role-> container -> image URI from ECR and port mapping -> maximum conditional for cpu and memory for scalable. 
+     task definition is ready now -> task definition select-> deploy -> run task (running in ecs cluster - <whatevername_we_gave>
 
 ECS - aws serverless compute (give task as docker container they will run) even call ed fargate instance. 
 ECS is a fully managed container orchestration service that allows you to run, scale, and manage Docker containers in the AWS cloud.
 ECS eliminates the need to manage the underlying infrastructure for running containers, including provisioning, scaling, and monitoring
 Service Auto Scaling: ECS supports automatic scaling of services based on metrics such as CPU and memory utilization, allowing you to dynamically adjust the number of running containers in response to changing workload demands.
-Integration with Other AWS Services: ECS integrates with other AWS services such as Elastic Load Balancing (ELB), CloudWatch, and IAM for enhanced functionality and security.
+Integration with Other AWS Services: ECS integrates with other AWS services such as Elastic Load Balancing (ELB) layer 4 TCP, CloudWatch, and IAM for enhanced functionality and security.
 Use Case: ECS is commonly used to deploy and manage containerized applications and microservices in the cloud, providing scalability, reliability, and ease of management.
 
 Elastic Container Service (ECS) is a fully managed container orchestration service provided by Amazon Web Services (AWS). It allows you to run, stop, and manage Docker containers on a cluster of Amazon EC2 instances.
+
+SNS topic - simple notifications service - one topic to send email, one to send sms, 
 
