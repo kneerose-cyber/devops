@@ -1,0 +1,28 @@
+All steps 
+https://mrcloudbook.com/devsecops-project-complete-ci-cd-3-tier-app-petshop/
+
+Step 1 — Create an Ubuntu(22.04) T2 Large Instance
+
+Step 2 — Install Jenkins, Docker and Trivy. Create a Sonarqube Container using Docker.
+     
+         Sonarqube (generate token and add it jenins crednetials secret)
+
+         Sonarqueb adminstiration webhook and add jenkins <http://jenkins-public-ip:8090>/sonarqube-webhook/
+
+         SonarQube is an open-source platform for continuous inspection of code quality. It performs automatic reviews of code to detect bugs, vulnerabilities, and code smells in a variety of programming languages. By integrating with various build tools and version control systems, SonarQube can analyze code at every stage of the development process, providing developers with immediate feedback on the quality of their code.
+
+         Trivy is an open-source vulnerability scanner for containers and other artifacts, such as container images, file systems, and Git repositories. It is designed to help developers and security professionals identify security vulnerabilities and potential issues in their containerized environments.
+
+
+
+Step 3 — Install Plugins like JDK, Sonarqube Scanner, Maven, and OWASP Dependency Check.
+          Apache Maven is a build automation tool primarily used for Java projects. It simplifies the build process by managing project dependencies, compiling source code, packaging artifacts, and performing other project-related tasks. Maven uses a declarative approach to project configuration, allowing developers to define project settings and dependencies in an XML-based project object model (POM) file.
+
+          Dependency check in a pipeline to check any dependecny and displays on jenkins dashboard
+
+
+
+Step 4 — Deploy the image using Docker
+         docker hub plugins install and add docker hub account and passwd. pull the image. (setup in pipeline)
+
+Step 5 — Kubernetes master and slave setup on Ubuntu (20.04) (install plugins in jenkins and setup everything in the pipeline)
