@@ -1,0 +1,321 @@
+1. Resource Requests and Limits
+Understanding and correctly setting resource requests and limits is foundational in Kubernetes. It ensures that your applications have the resources they need to run optimally while preventing any single application from monopolizing cluster resources.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-app
+spec:
+  containers:
+  - name: app-container
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+2. Liveness and Readiness Probes
+Liveness and readiness probes are critical for managing the lifecycle of your applications within Kubernetes. They help Kubernetes make intelligent decisions about when to restart a container (liveness) and when a container is ready to start accepting traffic (readiness).
+
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 8080
+  initialDelaySeconds: 3
+  periodSeconds: 3
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+3. ConfigMaps and Secrets
+ConfigMaps and Secrets are indispensable for externalizing configuration and sensitive data from application code. ConfigMaps allow you to store non-confidential data in key-value pairs, while Secrets are intended for sensitive information.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  config.json: |
+    {
+        "database": "sql",
+        "timeout": "30s",
+        "featureFlag": "true"
+    }
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secret
+type: Opaque
+data:
+  password: cGFzc3dvcmQ=
+
+
+4.  Horizontal Pod Autoscaler (HPA)
+The Horizontal Pod Autoscaler automatically adjusts the number of pod replicas in a Deployment, ReplicaSet, or StatefulSet based on observed CPU utilization or custom metrics.
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: sample-app-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sample-app
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+
+5. Network Policies
+Network policies are Kubernetes resources that control the flow of traffic between pods and network endpoints, allowing you to implement microsegmentation and enhance the security of your Kubernetes applications.
+
+Why: They are crucial for securing pod communications within a Kubernetes cluster, ensuring that only authorized traffic can flow between pods or to external services.
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+
+
+6. Service Accounts
+Service Accounts in Kubernetes are used to provide an identity for pods to interact with the Kubernetes API and other services within the cluster. They are crucial for managing access control and ensuring secure communication between services.
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-service-account
+  namespace: default
+
+
+Using a Service Account in a Pod:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: my-image
+  serviceAccountName: my-service-account
+
+
+7. Ingress Controllers and Ingress Resources
+Ingress controllers and resources manage external access to the services in a cluster, typically HTTP, allowing you to define rules for routing traffic to different services.
+Why: They provide a centralized, scalable, and secure method of managing access to your Kubernetes services from the internet.
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  rules:
+  - host: www.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: example-service
+            port:
+              number: 80
+
+
+8. Persistent Volumes (PV) and Persistent Volume Claims (PVC)
+Persistent Volumes (PV) and Persistent Volume Claims (PVC) offer a method for managing storage in Kubernetes, abstracting the details of how storage is provided and how it is consumed.
+
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: /path/to/data
+    server: nfs-server.example.com
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+
+9. Role-Based Access Control (RBAC)
+RBAC enforces fine-grained access control policies to Kubernetes resources, using roles and role bindings to restrict permissions within the cluster.
+
+Why: It’s crucial for maintaining the principle of least privilege across your Kubernetes cluster, ensuring users and applications have only the permissions they need.
+
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: default
+subjects:
+- kind: User
+  name: "jane"
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+
+
+10. Custom Resource Definitions (CRD)
+CRDs allow you to extend Kubernetes API by defining custom resources, bringing in new functionalities tailored to your needs.
+
+Why: CRDs empower you to create and manage custom objects, integrating seamlessly with Kubernetes APIs and kubectl tooling.
+Who: Developers and operators looking to introduce custom operations or resources into their Kubernetes environment.
+When to Use: Ideal for extending Kubernetes when existing resources do not meet your application’s specific requirements.
+
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: crontabs.stable.example.com
+spec:
+  group: stable.example.com
+  names:
+    kind: CronTab
+    listKind: CronTabList
+    plural: crontabs
+    singular: crontab
+  scope: Namespaced
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              cronSpec:
+                type: string
+              image:
+                type: string
+
+
+11. Taints and Tolerations
+Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.
+Why: They offer a powerful mechanism for controlling the placement of pods on nodes, based on factors like hardware, software, and other custom requirements.
+
+apiVersion: v1
+kind: Node
+metadata:
+  name: node1
+spec:
+  taints:
+  - key: "key1"
+    value: "value1"
+    effect: NoSchedule
+
+12. Affinity and Anti-affinity
+Affinity and anti-affinity settings allow you to influence where pods should (or should not) be placed relative to other pods.
+
+Why: Essential for managing pod distribution across the cluster to enhance fault tolerance, availability, or to meet other operational requirements.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: with-pod-affinity
+spec:
+  selector:
+    matchLabels:
+      app: with-pod-affinity
+  template:
+    metadata:
+      labels:
+        app: with-pod-affinity
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: security
+                operator: In
+                values:
+                - S1
+            topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: security
+                  operator: In
+                  values:
+                  - S2
+              topologyKey: "kubernetes.io/hostname"
+
+13. Kubernetes Jobs and CronJobs
+Jobs and CronJobs manage tasks that need to run once or repeatedly at specified intervals, respectively.
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: example-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: hello
+        image: busybox
+        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 30"]
+      restartPolicy: Never
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: example-cronjob
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            command: ["sh", "-c", "echo Hello Kubernetes! && sleep 30"]
+          restartPolicy: OnFailure
+
+
+
+
